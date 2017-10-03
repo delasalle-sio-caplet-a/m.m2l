@@ -39,14 +39,14 @@ else
 */
 
 
-/*
+
 // test de la méthode aPasseDesReservations -------------------------------------------------------
 // pour ce test, choisir un utilisateur avec des réservations et un autre sans réservation
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de aPasseDesReservations : </h3>";
-$ok = $dao->aPasseDesReservations("zenelsy");
+$ok = $dao->aPasseDesReservations("Test");
 if ($ok)
-	echo "<p>zenelsy a bien passé des réservations !<br>";
+	echo "<p>Test a bien passé des réservations !<br>";
 else
 	echo "<p>zenelsy n'a pas passé de réservations !<br>";
 $ok = $dao->aPasseDesReservations("jim");
@@ -54,7 +54,7 @@ if ($ok)
 	echo "jim a bien passé des réservations !</p>";
 else
 	echo "jim n'a pas passé de réservations !</p>";
-*/
+
 
 
 /*
@@ -73,14 +73,14 @@ else
 	echo "<p>La réservation 1 n'existe pas !</p>";
 */
 
-
+/*
 // test de la méthode creerLesDigicodesManquants --------------------------------------------------
 // modifié par Jim le 24/9/2015
 echo "<h3>Test de creerLesDigicodesManquants : </h3>";
 $dao->creerLesDigicodesManquants();
 echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
 echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
-
+*/
 
 /*
 // test de la méthode creerUtilisateur ------------------------------------------------------------
@@ -129,7 +129,7 @@ if ($dao->existeReservation("12")) $existe = "oui"; else $existe = "non";
 echo "Existence de la réservation 12 : <b>" . $existe . "</b></p>";
 */
 
-
+/*
 // test de la méthode existeUtilisateur -----------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de existeUtilisateur : </h3>";
@@ -137,15 +137,15 @@ if ($dao->existeUtilisateur("admin")) $existe = "oui"; else $existe = "non";
 echo "<p>Existence de l'utilisateur 'admin' : <b>" . $existe . "</b><br>";
 if ($dao->existeUtilisateur("xxxx")) $existe = "oui"; else $existe = "non";
 echo "Existence de l'utilisateur 'xxxx' : <b>" . $existe . "</b></p>";
-
-
+*/
+/*
 // test de la méthode genererUnDigicode -----------------------------------------------------------
 // modifié par Jim le 24/9/2015
 echo "<h3>Test de genererUnDigicode : </h3>";
 echo "<p>Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><br>";
 echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><br>";
 echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><p>";
-
+*/
 
 /*
 // test de la méthode getLesReservations ----------------------------------------------------------
@@ -184,7 +184,7 @@ foreach ($lesSalles as $uneSalle)
 }
 */
 
-
+/*
 // test de la méthode getNiveauUtilisateur --------------------------------------------------------
 // modifié par Jim le 24/9/2015
 echo "<h3>Test de getNiveauUtilisateur : </h3>";
@@ -194,7 +194,7 @@ $niveauUtilisateur = $dao->getNiveauUtilisateur('admin', 'adminnnnn');
 echo "NiveauUtilisateur de ('admin', 'adminnnnn') : <b>" . $niveauUtilisateur . "</b><br>";
 $niveauUtilisateur = $dao->getNiveauUtilisateur('guesdonm', 'passe');
 echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "</b></p>";
-
+*/
 
 /*
 // test de la méthode getReservation --------------------------------------------------------------
