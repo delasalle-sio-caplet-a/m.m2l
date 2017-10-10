@@ -20,7 +20,7 @@ include_once ('DAO.class.php');
 $dao = new DAO();
 
 
-/*
+
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
 // modifié par Jim le 28/9/2015
@@ -36,7 +36,6 @@ if ($laReservation) {
 }
 else
 	echo "<p>La réservation 1 n'existe pas !</p>";
-*/
 
 
 /*
@@ -138,6 +137,7 @@ echo "<p>Existence de l'utilisateur 'admin' : <b>" . $existe . "</b><br>";
 if ($dao->existeUtilisateur("xxxx")) $existe = "oui"; else $existe = "non";
 echo "Existence de l'utilisateur 'xxxx' : <b>" . $existe . "</b></p>";
 */
+
 /*
 // test de la méthode genererUnDigicode -----------------------------------------------------------
 // modifié par Jim le 24/9/2015
@@ -201,6 +201,10 @@ echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de getReservation : </h3>";
 $laReservation = $dao->getReservation("2");
+if ($laReservation) 
+	echo "<p>La réservation 2 existe : <br>" . $laReservation->toString() . "</p>";
+else
+	echo "<p>La réservation 2 n'existe pas !</p>";	
 if ($laReservation) 
 	echo "<p>La réservation 2 existe : <br>" . $laReservation->toString() . "</p>";
 else

@@ -28,6 +28,7 @@ $uneSalle = new Salle($unId, $unRoomName, $unCapacity, $unAreaName);
 echo ('$id : ' . $uneSalle->getId() . '<br>');
 echo ('$room_name : ' . $uneSalle->getRoom_name() . '<br>');
 echo ('$capacity : ' . $uneSalle->getCapacity() . '<br>');
+echo ('$area_name : ' . $uneSalle->getArea_Name() . '<br>');
 echo ('$area_name : ' . $uneSalle->getArea_name() . '<br>');
 echo ('<br>');
 
@@ -35,11 +36,13 @@ echo ('<br>');
 $uneSalle->setId(6);
 $uneSalle->setRoom_name("Amphithéâtre");
 $uneSalle->setCapacity(200);
+$uneSalle->setArea_Name("Salles de réception");
 $uneSalle->setArea_name("Salles de réception");
 
 echo ('$id : ' . $uneSalle->getId() . '<br>');
 echo ('$room_name : ' . $uneSalle->getRoom_name() . '<br>');
 echo ('$capacity : ' . $uneSalle->getCapacity() . '<br>');
+echo ('$area_name : ' . $uneSalle->getArea_Name() . '<br>');
 echo ('$area_name : ' . $uneSalle->getArea_name() . '<br>');
 echo ('<br>');
 

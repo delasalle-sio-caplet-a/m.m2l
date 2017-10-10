@@ -126,7 +126,7 @@ class DAO
 	}
 	
 	public function aPasseDesReservations($nom) {
-	    	    
+	    	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ntm diabaté ;
 	  	// préparation de la requete de recherche
 	        $txt_req = "Select count(*) from mrbs_entry where name = :nom";
 	        $req = $this->cnx->prepare($txt_req);
@@ -164,6 +164,7 @@ class DAO
 	        return false;
 	        else
 	            return true;
+
 	}
 	
 	/*
@@ -342,7 +343,6 @@ class DAO
 	        return null;
 	    
 	}
-	
 	// fournit le niveau d'un utilisateur identifié par $nomUser et $mdpUser
 	// renvoie "utilisateur" ou "administrateur" si authentification correcte, "inconnu" sinon
 	// modifié par Jim le 5/5/2015
