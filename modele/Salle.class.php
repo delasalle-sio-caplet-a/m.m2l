@@ -5,6 +5,7 @@
 // Création : 03/10/2017 par Lucas
 // Mise à jour : 
 
+
 class Salle
 {
     // ------------------------------------------------------------------------------------------------------
@@ -59,7 +60,6 @@ class Salle
     }
     
 } // fin de la classe Salle
->>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 
 
 // ATTENTION : on ne met pas de balise de fin de script pour ne pas prendre le risque

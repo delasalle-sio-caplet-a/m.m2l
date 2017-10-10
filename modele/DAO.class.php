@@ -164,6 +164,7 @@ class DAO
 	        return false;
 	        else
 	            return true;
+
 	}
 	
 	/*
@@ -311,9 +312,9 @@ class DAO
 	    $txt_req = $txt_req . " from mrbs_entry, mrbs_room, mrbs_entry_digicode";
 	    $txt_req = $txt_req . " where mrbs_entry.room_id = mrbs_room.id";
 	    $txt_req = $txt_req . " and mrbs_entry.id = mrbs_entry_digicode.id";
-	    $txt_req = $txt_req . " and id = :id";
+	    $txt_req = $txt_req . " and mrbs_entry.id = :idReservation";
 	    $req = $this->cnx->prepare($txt_req);
-	    $req->bindValue("id", $idReservation, PDO::PARAM_STR);
+	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
 	    $req->execute();
 	    
 	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
@@ -342,7 +343,6 @@ class DAO
 	        return null;
 	    
 	}
-	
 	// fournit le niveau d'un utilisateur identifié par $nomUser et $mdpUser
 	// renvoie "utilisateur" ou "administrateur" si authentification correcte, "inconnu" sinon
 	// modifié par Jim le 5/5/2015
