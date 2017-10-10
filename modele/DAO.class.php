@@ -164,7 +164,7 @@ class DAO
 
 	}
 	
-	/*
+	
 	 // mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
 	 // cette fonction peut dépanner en cas d'absence des triggers chargés de créer les digicodes
 	 // modifié par Jim le 23/9/2015
@@ -199,7 +199,10 @@ class DAO
 		 $req1->closeCursor();
 		 return;
 	 }
-	 */
+	 public function envoyerMDP($nom, $nouveauMDP)
+	 {
+	     
+	 }
 
 	// enregistre l'utilisateur dans la bdd
 	// modifié par Jim le 26/5/2016
