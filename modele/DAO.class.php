@@ -81,19 +81,16 @@ class DAO
 	
 	public function confirmerReservation($idReservation)
 	{  
-	    $txt_req1 = "SELECT COUNT(*) FROM mrbs_entry WHERE status = :reservation";
+    $txt_req = "UPDATE mrbs_entry SET status = '0' WHERE id = :idReservation";
 	    $req = $this->cnx->prepare($txt_req);
-	    $req->bindValue("reservation", $idReservation, PDO::PARAM_STR);
-	    $req->execute();
-	    $nbReponses = $req->fetchColumn(0);
+	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);
 	    
-	    $req->closeCursor();
-	    
-	    if($nbReponses == 0)
-	        return false;
-	    else 
-	        return true;
+	    // exécution de la requete
+	    $ok = $req->execute();
+	    return $ok;
 	}
+	
+	
 	// mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
 	// cette fonction peut dépanner en cas d'absence des triggers chargés de créer les digicodes
 	// modifié par Jim le 5/5/2015
@@ -167,7 +164,7 @@ class DAO
 
 	}
 	
-	/*
+	
 	 // mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
 	 // cette fonction peut dépanner en cas d'absence des triggers chargés de créer les digicodes
 	 // modifié par Jim le 23/9/2015
@@ -202,7 +199,10 @@ class DAO
 		 $req1->closeCursor();
 		 return;
 	 }
-	 */
+	 public function envoyerMDP($nom, $nouveauMDP)
+	 {
+	     
+	 }
 
 	// enregistre l'utilisateur dans la bdd
 	// modifié par Jim le 26/5/2016
@@ -369,6 +369,7 @@ class DAO
 		return $reponse;
 	}	
 
+<<<<<<< HEAD
 	
 	public function getLesSalles()
 	{	// préparation de la requete de recherche
@@ -404,6 +405,40 @@ class DAO
 	    $req->closeCursor();
 	    // fourniture de la collection
 	    return $lesSalles;
+=======
+	public function getUtilisateur($nomUser)
+	{
+	    $txt_req = "Select id, level, name, password, email";
+	    $txt_req = $txt_req . " from mrbs_users";
+	    $txt_req = $txt_req . " where name = :nomUser";
+	    $req = $this->cnx->prepare($txt_req);
+	    $req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
+	    $req->execute();
+	    
+	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    if ($uneLigne)
+	    {	// création d'un objet Reservation
+	        $unId = utf8_encode($uneLigne->id);
+	        $unLevel = utf8_encode($uneLigne->level);
+	        $unName = utf8_encode($uneLigne->name);
+	        $unPassword = utf8_encode($uneLigne->password);
+	        $unEmail = utf8_encode($uneLigne->email);
+	        
+	        
+	        $unUtilisateur = new Utilisateur($unId, $unLevel, $unName, $unPassword, $unEmail);
+	        
+	        // libère les ressources du jeu de données
+	        $req->closeCursor();
+	        
+	        return $unUtilisateur;
+	        
+	    }
+	    
+	    else
+	        
+	        return null;
+	        
+>>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 	}
 	// teste si le digicode saisi ($digicodeSaisi) correspond bien à une réservation
 	// de la salle indiquée ($idSalle) pour l'heure courante

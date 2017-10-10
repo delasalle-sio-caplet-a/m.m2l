@@ -53,7 +53,7 @@ if ($ok)
 	echo "jim a bien passé des réservations !</p>";
 else
 	echo "jim n'a pas passé de réservations !</p>";
-
+*/
 
 
 /*
@@ -61,16 +61,16 @@ else
 // pour ce test, utiliser une réservation dont le champ status est mis auparavant à 4 (état provisoire)
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de confirmerReservation : </h3>";
-$laReservation = $dao->getReservation("1");
+$laReservation = $dao->getReservation("2");
 if ($laReservation) {
-	echo "<p>Etat de la réservation 1 avant confirmation : <b>" . $laReservation->getStatus() . "</b><br>";
-	$dao->confirmerReservation("1");
-	$laReservation = $dao->getReservation("1");
-	echo "Etat de la réservation 1 après confirmation : <b>" . $laReservation->getStatus() . "</b></p>";
+	echo "<p>Etat de la réservation 2 avant confirmation : <b>" . $laReservation->getStatus() . "</b><br>";
+	$dao->confirmerReservation("2");
+	$laReservation = $dao->getReservation("2");
+	echo "Etat de la réservation 2 après confirmation : <b>" . $laReservation->getStatus() . "</b></p>";
 }
 else
 	echo "<p>La réservation 1 n'existe pas !</p>";
-*/
+
 
 /*
 // test de la méthode creerLesDigicodesManquants --------------------------------------------------
@@ -147,7 +147,7 @@ echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><br>";
 echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><p>";
 */
 
-
+/*
 // test de la méthode getLesReservations ----------------------------------------------------------
 // modifié par Jim le 25/5/2016
 /*
@@ -197,7 +197,7 @@ $niveauUtilisateur = $dao->getNiveauUtilisateur('guesdonm', 'passe');
 echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "</b></p>";
 */
 
-
+/*
 // test de la méthode getReservation --------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 /*
@@ -213,9 +213,13 @@ if ($laReservation)
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 
 /*
+
 // test de la méthode getUtilisateur --------------------------------------------------------------
 // modifié par Jim le 30/9/2015
 echo "<h3>Test de getUtilisateur : </h3>";
@@ -232,7 +236,6 @@ else
 */
 
 
-/*
 // test de la méthode modifierMdpUser -------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de modifierMdpUser : </h3>";
@@ -251,7 +254,7 @@ if ($unUtilisateur) {
 }
 else
 	echo "<p>L'utilisateur admin n'existe pas !</p>";
-*/
+
 
 
 /*
