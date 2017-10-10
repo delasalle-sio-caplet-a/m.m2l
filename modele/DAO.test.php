@@ -24,6 +24,7 @@ $dao = new DAO();
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
 // modifié par Jim le 28/9/2015
+/*
 echo "<h3>Test de annulerReservation : </h3>";
 $laReservation = $dao->getReservation("1");
 if ($laReservation) {
@@ -36,9 +37,9 @@ if ($laReservation) {
 }
 else
 	echo "<p>La réservation 1 n'existe pas !</p>";
+*/
 
 
-/*
 // test de la méthode aPasseDesReservations -------------------------------------------------------
 // pour ce test, choisir un utilisateur avec des réservations et un autre sans réservation
 // modifié par Jim le 28/9/2015
@@ -53,7 +54,7 @@ if ($ok)
 	echo "jim a bien passé des réservations !</p>";
 else
 	echo "jim n'a pas passé de réservations !</p>";
-*/
+
 
 
 /*
