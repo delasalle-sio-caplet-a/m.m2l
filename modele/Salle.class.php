@@ -2,7 +2,7 @@
 // Projet Réservations M2L - version web mobile
 // fichier : modele/Salle.class.php
 // Rôle : 
-// Création : 
+// Création : 03/10/2017 par Lucas
 // Mise à jour : 
 
 class Salle
@@ -11,6 +11,8 @@ class Salle
     // ---------------------------------- Membres privés de la classe ---------------------------------------
     // ------------------------------------------------------------------------------------------------------
     
+    // Rappel : le temps UNIX mesure le nombre de secondes écoulées depuis le 1/1/1970
+    // les types des champs timestamp, start_time et end_time découlent des types choisis pour la BDD
     private $id;			
     private $room_name;		
     private $capacity;	
@@ -57,6 +59,7 @@ class Salle
     }
     
 } // fin de la classe Salle
+>>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 
 
 // ATTENTION : on ne met pas de balise de fin de script pour ne pas prendre le risque
