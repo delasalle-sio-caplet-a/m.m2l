@@ -374,7 +374,13 @@ class DAO
 		return $reponse;
 	}	
 	
-	// focntion supprimerUtilisateur
+	// fonction modifierMdpUser
+	public function modifierMdpUser($nom, $nouveauMdp)
+	{
+	    
+	}
+	
+	// fonction supprimerUtilisateur
 	public function supprimerUtilisateur($nom)
 	{
 	    $existe = DAO::existeUtilisateur($nom);
