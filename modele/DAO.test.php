@@ -18,8 +18,7 @@
 // connexion du serveur web à la base MySQL
 include_once ('DAO.class.php');
 $dao = new DAO();
-
-
+/*
 
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
@@ -39,7 +38,7 @@ else
 	echo "<p>La réservation 1 n'existe pas !</p>";
 */
 
-
+/*
 // test de la méthode aPasseDesReservations -------------------------------------------------------
 // pour ce test, choisir un utilisateur avec des réservations et un autre sans réservation
 // modifié par Jim le 28/9/2015
@@ -202,10 +201,6 @@ echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de getReservation : </h3>";
 $laReservation = $dao->getReservation("2");
-if ($laReservation) 
-	echo "<p>La réservation 2 existe : <br>" . $laReservation->toString() . "</p>";
-else
-	echo "<p>La réservation 2 n'existe pas !</p>";	
 if ($laReservation) 
 	echo "<p>La réservation 2 existe : <br>" . $laReservation->toString() . "</p>";
 else
