@@ -366,7 +366,39 @@ class DAO
 		return $reponse;
 	}	
 
-
+	public function getUtilisateur($nomUser)
+	{
+	    $txt_req = "Select id, level, name, password, email";
+	    $txt_req = $txt_req . " from mrbs_users";
+	    $txt_req = $txt_req . " where name = :nomUser";
+	    $req = $this->cnx->prepare($txt_req);
+	    $req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
+	    $req->execute();
+	    
+	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    if ($uneLigne)
+	    {	// création d'un objet Reservation
+	        $unId = utf8_encode($uneLigne->id);
+	        $unLevel = utf8_encode($uneLigne->level);
+	        $unName = utf8_encode($uneLigne->name);
+	        $unPassword = utf8_encode($uneLigne->password);
+	        $unEmail = utf8_encode($uneLigne->email);
+	        
+	        
+	        $unUtilisateur = new Utilisateur($unId, $unLevel, $unName, $unPassword, $unEmail);
+	        
+	        // libère les ressources du jeu de données
+	        $req->closeCursor();
+	        
+	        return $unUtilisateur;
+	        
+	    }
+	    
+	    else
+	        
+	        return null;
+	        
+	}
 	// teste si le digicode saisi ($digicodeSaisi) correspond bien à une réservation
 	// de la salle indiquée ($idSalle) pour l'heure courante
 	// fournit la valeur 0 si le digicode n'est pas bon, 1 si le digicode est bon

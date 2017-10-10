@@ -56,7 +56,7 @@ else
 */
 
 
-
+/*
 // test de la méthode confirmerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation dont le champ status est mis auparavant à 4 (état provisoire)
 // modifié par Jim le 28/9/2015
@@ -147,7 +147,7 @@ echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><br>";
 echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><p>";
 */
 
-
+/*
 // test de la méthode getLesReservations ----------------------------------------------------------
 // modifié par Jim le 25/5/2016
 echo "<h3>Test de getLesReservations : </h3>";
@@ -196,7 +196,7 @@ $niveauUtilisateur = $dao->getNiveauUtilisateur('guesdonm', 'passe');
 echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "</b></p>";
 */
 
-
+/*
 // test de la méthode getReservation --------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de getReservation : </h3>";
@@ -210,10 +210,10 @@ if ($laReservation)
 	echo "<p>La réservation 12 existe : <br>" . $laReservation->toString() . "</p>";
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
+*/
 
 
 
-/*
 // test de la méthode getUtilisateur --------------------------------------------------------------
 // modifié par Jim le 30/9/2015
 echo "<h3>Test de getUtilisateur : </h3>";
@@ -227,7 +227,6 @@ if ($unUtilisateur)
 	echo "<p>L'utilisateur admon existe : <br>" . $unUtilisateur->toString() . "</p>";
 else
 	echo "<p>L'utilisateur admon n'existe pas !</p>";
-*/
 
 
 /*
