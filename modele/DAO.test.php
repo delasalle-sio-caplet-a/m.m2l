@@ -39,7 +39,7 @@ else
 */
 
 
-
+/*
 // test de la méthode aPasseDesReservations -------------------------------------------------------
 // pour ce test, choisir un utilisateur avec des réservations et un autre sans réservation
 // modifié par Jim le 28/9/2015
@@ -54,7 +54,7 @@ if ($ok)
 	echo "jim a bien passé des réservations !</p>";
 else
 	echo "jim n'a pas passé de réservations !</p>";
-
+*/
 
 
 /*
@@ -123,8 +123,8 @@ echo "'zenelsy' a créé la réservation 11 : <b>" . $estLeCreateur . "</b></p>"
 // test de la méthode existeReservation -----------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de existeReservation : </h3>";
-if ($dao->existeReservation("11")) $existe = "oui"; else $existe = "non";
-echo "<p>Existence de la réservation 11 : <b>" . $existe . "</b><br>";
+if ($dao->existeReservation("3")) $existe = "oui"; else $existe = "non";
+echo "<p>Existence de la réservation 3 : <b>" . $existe . "</b><br>";
 if ($dao->existeReservation("12")) $existe = "oui"; else $existe = "non";
 echo "Existence de la réservation 12 : <b>" . $existe . "</b></p>";
 */
@@ -196,21 +196,21 @@ $niveauUtilisateur = $dao->getNiveauUtilisateur('guesdonm', 'passe');
 echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "</b></p>";
 */
 
-/*
+
 // test de la méthode getReservation --------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de getReservation : </h3>";
-$laReservation = $dao->getReservation("11");
+$laReservation = $dao->getReservation("2");
 if ($laReservation) 
-	echo "<p>La réservation 11 existe : <br>" . $laReservation->toString() . "</p>";
+	echo "<p>La réservation 2 existe : <br>" . $laReservation->toString() . "</p>";
 else
-	echo "<p>La réservation 11 n'existe pas !</p>";	
+	echo "<p>La réservation 2 n'existe pas !</p>";	
 $laReservation = $dao->getReservation("12");
 if ($laReservation) 
 	echo "<p>La réservation 12 existe : <br>" . $laReservation->toString() . "</p>";
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
-*/
+
 
 
 /*
