@@ -18,25 +18,30 @@
 // connexion du serveur web à la base MySQL
 include_once ('DAO.class.php');
 $dao = new DAO();
-/*
+
+// test de la méthode creerLesDigicodesManquants --------------------------------------------------
+// modifié par Jim le 24/9/2015
+echo "<h3>Test de creerLesDigicodesManquants : </h3>";
+$dao->creerLesDigicodesManquants();
+echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
+echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
 
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
 // modifié par Jim le 28/9/2015
-/*
+
 echo "<h3>Test de annulerReservation : </h3>";
-$laReservation = $dao->getReservation("1");
+$laReservation = $dao->getReservation("4");
 if ($laReservation) {
-	$dao->annulerReservation("1");
-	$laReservation = $dao->getReservation("1");
+	$dao->annulerReservation("4");
+	$laReservation = $dao->getReservation("4");
 	if ($laReservation)
-		echo "La réservation 1 n'a pas été supprimée !</p>";
+		echo "La réservation 4 n'a pas été supprimée !</p>";
 	else
-		echo "La réservation 1 a bien été supprimée !</p>";
+		echo "La réservation 4 a bien été supprimée !</p>";
 }
 else
-	echo "<p>La réservation 1 n'existe pas !</p>";
-*/
+	echo "<p>La réservation 4 n'existe pas !</p>";
 
 /*
 // test de la méthode aPasseDesReservations -------------------------------------------------------
@@ -53,33 +58,28 @@ if ($ok)
 	echo "jim a bien passé des réservations !</p>";
 else
 	echo "jim n'a pas passé de réservations !</p>";
+*/
 
 
 
-/*
 // test de la méthode confirmerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation dont le champ status est mis auparavant à 4 (état provisoire)
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de confirmerReservation : </h3>";
-$laReservation = $dao->getReservation("1");
+$laReservation = $dao->getReservation("2");
 if ($laReservation) {
-	echo "<p>Etat de la réservation 1 avant confirmation : <b>" . $laReservation->getStatus() . "</b><br>";
-	$dao->confirmerReservation("1");
-	$laReservation = $dao->getReservation("1");
-	echo "Etat de la réservation 1 après confirmation : <b>" . $laReservation->getStatus() . "</b></p>";
+	echo "<p>Etat de la réservation 2 avant confirmation : <b>" . $laReservation->getStatus() . "</b><br>";
+	$dao->confirmerReservation("2");
+	$laReservation = $dao->getReservation("2");
+	echo "Etat de la réservation 2 après confirmation : <b>" . $laReservation->getStatus() . "</b></p>";
 }
 else
-	echo "<p>La réservation 1 n'existe pas !</p>";
-*/
+	echo "<p>La réservation 2 n'existe pas !</p>";
 
-/*
-// test de la méthode creerLesDigicodesManquants --------------------------------------------------
-// modifié par Jim le 24/9/2015
-echo "<h3>Test de creerLesDigicodesManquants : </h3>";
-$dao->creerLesDigicodesManquants();
-echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
-echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
-*/
+
+
+
+
 
 /*
 // test de la méthode creerUtilisateur ------------------------------------------------------------
@@ -200,11 +200,11 @@ echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "
 // test de la méthode getReservation --------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de getReservation : </h3>";
-$laReservation = $dao->getReservation("2");
+$laReservation = $dao->getReservation("4");
 if ($laReservation) 
-	echo "<p>La réservation 2 existe : <br>" . $laReservation->toString() . "</p>";
+	echo "<p>La réservation 4 existe : <br>" . $laReservation->toString() . "</p>";
 else
-	echo "<p>La réservation 2 n'existe pas !</p>";	
+	echo "<p>La réservation 4 n'existe pas !</p>";	
 $laReservation = $dao->getReservation("12");
 if ($laReservation) 
 	echo "<p>La réservation 12 existe : <br>" . $laReservation->toString() . "</p>";
@@ -252,16 +252,16 @@ else
 */
 
 
-/*
+
 // test de la méthode supprimerUtilisateur --------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de supprimerUtilisateur : </h3>";
-$ok = $dao->supprimerUtilisateur("jim1");
+$ok = $dao->supprimerUtilisateur("lucas blandin");
 if ($ok)
  	echo "<p>Utilisateur bien supprimé !</p>";
 else
 	echo "<p>Echec lors de la suppression de l'utilisateur !</p>";
-*/
+
 
 
 /*

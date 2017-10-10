@@ -75,10 +75,15 @@ class DAO
 	// -------------------------------------- Méthodes d'instances ------------------------------------------
 	// ------------------------------------------------------------------------------------------------------
 	
-
-	
-	
-	
+	public function annulerReservation($idReservation)
+	{
+    	$txt_req = "DELETE FROM mrbs_entry WHERE id = :idReservation";
+    	$req = $this->cnx->prepare($txt_req);
+    	$req->bindValue(":idReservation", $idReservation, PDO::PARAM_INT);
+    	$ok = $req->execute();
+    	return $ok;
+	}
+		
 	public function confirmerReservation($idReservation)
 	{  
 	    $txt_req1 = "SELECT COUNT(*) FROM mrbs_entry WHERE status = :reservation";
@@ -226,7 +231,7 @@ class DAO
 	{	// préparation de la requete de recherche
 		$txt_req = "Select count(*) from mrbs_users where name = :nomUser";
 		
-		
+		$req = $this->cnx->prepare($txt_req);
 		// liaison de la requête et de ses paramètres
 		$req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
 		// exécution de la requete
@@ -368,6 +373,23 @@ class DAO
 		// fourniture de la réponse
 		return $reponse;
 	}	
+	
+	// focntion supprimerUtilisateur
+	public function supprimerUtilisateur($nom)
+	{
+	    $existe = DAO::existeUtilisateur($nom);
+	    if ($existe)
+	    {
+	    
+	    $txt_req = "DELETE FROM mrbs_users WHERE name = :nom";
+	    $req = $this->cnx->prepare($txt_req);
+	    $req->bindValue(":nom", $nom, PDO::PARAM_STR);
+	    $ok = $req->execute();
+	    return $ok;
+	    }else 
+	        return false;
+	}
+	
 
 	// teste si le digicode saisi ($digicodeSaisi) correspond bien à une réservation
 	// de la salle indiquée ($idSalle) pour l'heure courante
