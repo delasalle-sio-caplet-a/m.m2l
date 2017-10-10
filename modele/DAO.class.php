@@ -74,9 +74,26 @@ class DAO
 	// ------------------------------------------------------------------------------------------------------
 	// -------------------------------------- Méthodes d'instances ------------------------------------------
 	// ------------------------------------------------------------------------------------------------------
+	
 
-
-
+	
+	
+	
+	public function confirmerReservation($idReservation)
+	{  
+	    $txt_req1 = "SELECT COUNT(*) FROM mrbs_entry WHERE status = :reservation";
+	    $req = $this->cnx->prepare($txt_req);
+	    $req->bindValue("reservation", $idReservation, PDO::PARAM_STR);
+	    $req->execute();
+	    $nbReponses = $req->fetchColumn(0);
+	    
+	    $req->closeCursor();
+	    
+	    if($nbReponses == 0)
+	        return false;
+	    else 
+	        return true;
+	}
 	// mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
 	// cette fonction peut dépanner en cas d'absence des triggers chargés de créer les digicodes
 	// modifié par Jim le 5/5/2015
@@ -108,14 +125,46 @@ class DAO
 		return;
 	}
 	
-	public function annulerReservation($idReservation)
-	{
-	    $txt_req1 = "Delete * from mrbs_entry where id='$idReservation'";
-	    $req1 = $this->cnx->prepare($txt_req1);
-	    // extraction des données
-	    $req1->execute();
-	    $req1->closeCursor();
-	    return;
+	public function aPasseDesReservations($nom) {
+	    	    
+	  	// préparation de la requete de recherche
+	        $txt_req = "Select count(*) from mrbs_entry where name = :nom";
+	        $req = $this->cnx->prepare($txt_req);
+	        // liaison de la requête et de ses paramètres
+	        $req->bindValue("nom", $nom, PDO::PARAM_STR);
+	        // exécution de la requete
+	        $req->execute();
+	        $nbReponses = $req->fetchColumn(0);
+	        // libère les ressources du jeu de données
+	        $req->closeCursor();
+	        
+	        // fourniture de la réponse
+	        if ($nbReponses == 0)
+	            return false;
+	        else
+	            return true;
+	    
+	}
+	
+	
+	public function existeReservation($idReservation)
+	{	// préparation de la requete de recherche
+	    $txt_req = "Select count(*) from mrbs_entry where id = :idReservation";
+	    $req = $this->cnx->prepare($txt_req);
+	    // liaison de la requête et de ses paramètres
+	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
+	    // exécution de la requete
+	    $req->execute();
+	    $nbReponses = $req->fetchColumn(0);
+	    // libère les ressources du jeu de données
+	    $req->closeCursor();
+	    
+	    // fourniture de la réponse
+	    if ($nbReponses == 0)
+	        return false;
+	        else
+	            return true;
+
 	}
 	
 	/*
@@ -176,7 +225,8 @@ class DAO
 	public function existeUtilisateur($nomUser)
 	{	// préparation de la requete de recherche
 		$txt_req = "Select count(*) from mrbs_users where name = :nomUser";
-		$req = $this->cnx->prepare($txt_req);
+		
+		
 		// liaison de la requête et de ses paramètres
 		$req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
 		// exécution de la requete
@@ -256,48 +306,43 @@ class DAO
 		return $lesReservations;
 	}
 	
-	// fournit la liste des réservations à venir d'un utilisateur ($nomUser)
-	// le résultat est fourni sous forme d'une collection d'objets Reservation
-	// modifié par Arthur le 3/10/2017
 	public function getReservation($idReservation)
 	{
 	    $txt_req = "Select mrbs_entry.id as id_entry, timestamp, start_time, end_time, room_name, status, digicode";
 	    $txt_req = $txt_req . " from mrbs_entry, mrbs_room, mrbs_entry_digicode";
 	    $txt_req = $txt_req . " where mrbs_entry.room_id = mrbs_room.id";
 	    $txt_req = $txt_req . " and mrbs_entry.id = mrbs_entry_digicode.id";
-    	$txt_req = $txt_req . " and id = :idReservation";
-    	
-    	$req = $this->cnx->prepare($txt_req);
-    	// liaison de la requête et de ses paramètres
-    	$req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
-    	// extraction des données
-    	$req->execute();
-    	$uneLigne = $req->fetch(PDO::FETCH_OBJ);
-    	
-    	// tant qu'une ligne est trouvée :
-    	if ($uneLigne)
-    	{	// création d'un objet Reservation
-    	    $unId = utf8_encode($uneLigne->id_entry);
-    	    $unTimeStamp = utf8_encode($uneLigne->timestamp);
-    	    $unStartTime = utf8_encode($uneLigne->start_time);
-    	    $unEndTime = utf8_encode($uneLigne->end_time);
-    	    $unRoomName = utf8_encode($uneLigne->room_name);
-    	    $unStatus = utf8_encode($uneLigne->status);
-    	    $unDigicode = utf8_encode($uneLigne->digicode);
-    	    
-    	    $uneReservation = new Reservation($unId, $unTimeStamp, $unStartTime, $unEndTime, $unRoomName, $unStatus, $unDigicode);
-
-    	// libère les ressources du jeu de données
-    	$req->closeCursor();
-    	// fourniture de la collection
-    	return $uneReservation;
-    	}
-    	else {
-    	          return null;
-    	     }
-
+	    $txt_req = $txt_req . " and id = :id";
+	    $req = $this->cnx->prepare($txt_req);
+	    $req->bindValue("id", $idReservation, PDO::PARAM_STR);
+	    $req->execute();
+	    
+	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    if ($uneLigne)
+	    {	// création d'un objet Reservation
+	        $unId = utf8_encode($uneLigne->id_entry);
+	        $unTimeStamp = utf8_encode($uneLigne->timestamp);
+	        $unStartTime = utf8_encode($uneLigne->start_time);
+	        $unEndTime = utf8_encode($uneLigne->end_time);
+	        $unRoomName = utf8_encode($uneLigne->room_name);
+	        $unStatus = utf8_encode($uneLigne->status);
+	        $unDigicode = utf8_encode($uneLigne->digicode);
+	        
+	        
+	        $uneReservation = new Reservation($unId, $unTimeStamp, $unStartTime, $unEndTime, $unRoomName, $unStatus, $unDigicode);
+            
+	    // libère les ressources du jeu de données
+	    $req->closeCursor();
+	    
+	    return $uneReservation;
+	    
+	    }
+	    
+	    else 
+	        
+	        return null;
+	    
 	}
-
 	// fournit le niveau d'un utilisateur identifié par $nomUser et $mdpUser
 	// renvoie "utilisateur" ou "administrateur" si authentification correcte, "inconnu" sinon
 	// modifié par Jim le 5/5/2015
@@ -323,6 +368,46 @@ class DAO
 		// fourniture de la réponse
 		return $reponse;
 	}	
+	
+	public function getLesReservations($idReservation)
+	{	// préparation de la requete de recherche
+	    $txt_req = "Select mrbs_entry.id as id_entry, timestamp, start_time, end_time, room_name, status, digicode";
+	    $txt_req = $txt_req . " from mrbs_entry, mrbs_room, mrbs_entry_digicode";
+	    $txt_req = $txt_req . " where mrbs_entry.room_id = mrbs_room.id";
+	    $txt_req = $txt_req . " and mrbs_entry.id = mrbs_entry_digicode.id";
+	    $txt_req = $txt_req . " order by room_name";
+	    
+	    $req = $this->cnx->prepare($txt_req);
+	    // liaison de la requête et de ses paramètres
+	    $req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
+	    // extraction des données
+	    $req->execute();
+	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    
+	    // construction d'une collection d'objets Reservation
+	    $lesReservations = array();
+	    // tant qu'une ligne est trouvée :
+	    while ($uneLigne)
+	    {	// création d'un objet Reservation
+	        $unId = utf8_encode($uneLigne->id_entry);
+	        $unTimeStamp = utf8_encode($uneLigne->timestamp);
+	        $unStartTime = utf8_encode($uneLigne->start_time);
+	        $unEndTime = utf8_encode($uneLigne->end_time);
+	        $unRoomName = utf8_encode($uneLigne->room_name);
+	        $unStatus = utf8_encode($uneLigne->status);
+	        $unDigicode = utf8_encode($uneLigne->digicode);
+	        
+	        $uneReservation = new Reservation($unId, $unTimeStamp, $unStartTime, $unEndTime, $unRoomName, $unStatus, $unDigicode);
+	        // ajout de la réservation à la collection
+	        $lesReservations[] = $uneReservation;
+	        // extrait la ligne suivante
+	        $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    }
+	    // libère les ressources du jeu de données
+	    $req->closeCursor();
+	    // fourniture de la collection
+	    return $lesReservations;
+	}
 
 	// teste si le digicode saisi ($digicodeSaisi) correspond bien à une réservation
 	// de la salle indiquée ($idSalle) pour l'heure courante
