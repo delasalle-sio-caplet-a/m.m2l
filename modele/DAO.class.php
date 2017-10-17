@@ -75,10 +75,15 @@ class DAO
 	// -------------------------------------- Méthodes d'instances ------------------------------------------
 	// ------------------------------------------------------------------------------------------------------
 	
-
-	
-	
-	
+	public function annulerReservation($idReservation)
+	{
+    	$txt_req = "DELETE FROM mrbs_entry WHERE id = :idReservation";
+    	$req = $this->cnx->prepare($txt_req);
+    	$req->bindValue(":idReservation", $idReservation, PDO::PARAM_INT);
+    	$ok = $req->execute();
+    	return $ok;
+	}
+		
 	public function confirmerReservation($idReservation)
 	{  
     $txt_req = "UPDATE mrbs_entry SET status = '0' WHERE id = :idReservation";
@@ -89,6 +94,8 @@ class DAO
 	    $ok = $req->execute();
 	    return $ok;
 	}
+
+	
 	
 	public function aPasseDesReservations($nom) {
 	    	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
@@ -167,9 +174,16 @@ class DAO
 		 $req1->closeCursor();
 		 return;
 	 }
-	 public function envoyerMDP($nom, $nouveauMDP)
+	 public function envoyerMDP($nom, $password)
 	 {
-	     
+	     $txt_req = "UPDATE";
+	     $req = $this->cnx->prepare($txt_req);
+	     // liaison de la requête et de ses paramètres
+	     $req->bindValue("nom", utf8_decode($nom->getUtilisateur()), PDO::PARAM_STR);
+	     $req->bindValue("password", utf8_decode($password->getUtilisateur()), PDO::PARAM_STR);
+	     // exécution de la requete
+	     $ok = $req->execute();
+	     return $ok;
 	 }
 
 	// enregistre l'utilisateur dans la bdd
@@ -194,7 +208,7 @@ class DAO
 	{	// préparation de la requete de recherche
 		$txt_req = "Select count(*) from mrbs_users where name = :nomUser";
 		
-		
+		$req = $this->cnx->prepare($txt_req);
 		// liaison de la requête et de ses paramètres
 		$req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
 		// exécution de la requete
@@ -338,6 +352,37 @@ class DAO
 	}	
 
 
+
+
+	
+	// fonction modifierMdpUser
+	public function modifierMdpUser($nom, $nouveauMdp)
+	{
+	    $txt_req = "UPDATE mrbs_users SET password = :nouveauMdp WHERE name = :nom";
+	    $req = $this->cnx->prepare($txt_req);
+	    $req->bindValue("nom", $nom, PDO::PARAM_STR);
+	    $req->bindValue("nouveauMdp", md5($nouveauMdp), PDO::PARAM_STR);
+	    // exécution de la requete
+	    $ok = $req->execute();
+	    return $ok;
+	}
+	
+	// fonction supprimerUtilisateur
+	public function supprimerUtilisateur($nom)
+	{
+	    $existe = DAO::existeUtilisateur($nom);
+	    if ($existe)
+	    {
+	    
+	    $txt_req = "DELETE FROM mrbs_users WHERE name = :nom";
+	    $req = $this->cnx->prepare($txt_req);
+	    $req->bindValue(":nom", $nom, PDO::PARAM_STR);
+	    $ok = $req->execute();
+	    return $ok;
+	    }else 
+	        return false;
+	}
+	
 	
 	public function getLesSalles()
 	{	// préparation de la requete de recherche
@@ -373,7 +418,9 @@ class DAO
 	    $req->closeCursor();
 	    // fourniture de la collection
 	    return $lesSalles;
+
 	}
+
 	public function getUtilisateur($nomUser)
 	{
 	    $txt_req = "Select id, level, name, password, email";
@@ -405,8 +452,8 @@ class DAO
 	    else
 	        
 	        return null;
-	        
 
+	     
 	}
 	// teste si le digicode saisi ($digicodeSaisi) correspond bien à une réservation
 	// de la salle indiquée ($idSalle) pour l'heure courante
