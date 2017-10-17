@@ -94,7 +94,7 @@ else
 */
 
 
-/*
+
 // test de la méthode envoyerMdp ------------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de envoyerMdp : </h3>";
@@ -104,7 +104,7 @@ if ($ok)
 	echo "<p>Mail bien envoyé !</p>";
 else
 	echo "<p>Echec lors de l'envoi du mail !</p>";
-*/
+
 
 
 /*
@@ -213,13 +213,8 @@ if ($laReservation)
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
 */
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 
 /*
-
 // test de la méthode getUtilisateur --------------------------------------------------------------
 // modifié par Jim le 30/9/2015
 echo "<h3>Test de getUtilisateur : </h3>";
@@ -233,9 +228,9 @@ if ($unUtilisateur)
 	echo "<p>L'utilisateur admon existe : <br>" . $unUtilisateur->toString() . "</p>";
 else
 	echo "<p>L'utilisateur admon n'existe pas !</p>";
+
 */
-
-
+/*
 // test de la méthode modifierMdpUser -------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de modifierMdpUser : </h3>";
@@ -256,7 +251,7 @@ else
 	echo "<p>L'utilisateur admin n'existe pas !</p>";
 
 
-
+*/
 /*
 // test de la méthode supprimerUtilisateur --------------------------------------------------------
 // modifié par Jim le 28/9/2015
@@ -269,15 +264,15 @@ else
 */
 
 
-
+/*
 // test de la méthode testerDigicodeBatiment ------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeBatiment : </h3>";
 $reponse = $dao->testerDigicodeBatiment("DEA7D1");
 echo "<p>L'appel de testerDigicodeBatiment('DEA7D1') donne : <b>" . $reponse . "</b><br>";
 
-
-
+*/
+/*
 
 // test de la méthode testerDigicodeSalle ---------------------------------------------------------
 // modifié par Jim le 28/9/2015
