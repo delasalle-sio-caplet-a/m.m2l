@@ -204,9 +204,16 @@ class DAO
 		 $req1->closeCursor();
 		 return;
 	 }
-	 public function envoyerMDP($nom, $nouveauMDP)
+	 public function envoyerMDP($nom, $password)
 	 {
-	     
+	     $txt_req = "UPDATE";
+	     $req = $this->cnx->prepare($txt_req);
+	     // liaison de la requête et de ses paramètres
+	     $req->bindValue("nom", utf8_decode($nom->getUtilisateur()), PDO::PARAM_STR);
+	     $req->bindValue("password", utf8_decode($password->getUtilisateur()), PDO::PARAM_STR);
+	     // exécution de la requete
+	     $ok = $req->execute();
+	     return $ok;
 	 }
 
 	// enregistre l'utilisateur dans la bdd
