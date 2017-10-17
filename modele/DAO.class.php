@@ -404,6 +404,43 @@ class DAO
 	}
 	
 
+<<<<<<< HEAD
+	
+	public function getLesSalles()
+	{	// préparation de la requete de recherche
+	    $txt_req = "Select id, area_id, room_name, sort_key, description, capacity, room_admin_email, custom_html";
+	    $txt_req = $txt_req . " from mrbs_room";
+	    
+	    $req = $this->cnx->prepare($txt_req);
+	 
+	    // extraction des données
+	    $req->execute();
+	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    
+	    // construction d'une collection d'objets Reservation
+	    $lesSalles = array();
+	    // tant qu'une ligne est trouvée :
+	    while ($uneLigne)
+	    {	// création d'un objet Reservation
+	        $unId = utf8_encode($uneLigne->id);
+	        $unRoomName = utf8_encode($uneLigne->room_name);
+	        $unSortKey = utf8_encode($uneLigne->sort_key);
+	        $unDescription = utf8_encode($uneLigne->description);
+	        $unCapacity = utf8_encode($uneLigne->capacity);
+	        $unRoomAdminEmail = utf8_encode($uneLigne->room_admin_email);
+	        $unCustomHtml = utf8_encode($uneLigne->custom_html);
+	        
+	        $uneSalle = new Salle($unId, $unRoomName, $unSortKey, $unDescription, $unCapacity, $unRoomAdminEmail, $unCustomHtml);
+	        // ajout de la réservation à la collection
+	        $lesSalles[] = $uneSalle;
+	        // extrait la ligne suivante
+	        $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    }
+	    // libère les ressources du jeu de données
+	    $req->closeCursor();
+	    // fourniture de la collection
+	    return $lesSalles;
+=======
 	public function getUtilisateur($nomUser)
 	{
 	    $txt_req = "Select id, level, name, password, email";
@@ -436,6 +473,7 @@ class DAO
 	        
 	        return null;
 	        
+>>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 	}
 	// teste si le digicode saisi ($digicodeSaisi) correspond bien à une réservation
 	// de la salle indiquée ($idSalle) pour l'heure courante
@@ -469,6 +507,35 @@ class DAO
 			return "0";
 		else
 			return "1";
+	}
+	
+	public function testerDigicodeBatiment($digicodeSaisi)
+	{	global $DELAI_DIGICODE;
+	// préparation de la requete de recherche
+	$txt_req = "Select count(*)";
+	$txt_req = $txt_req . " from mrbs_entry, mrbs_entry_digicode";
+	$txt_req = $txt_req . " where mrbs_entry.id = mrbs_entry_digicode.id";
+	$txt_req = $txt_req . " and digicode = :digicodeSaisi";
+	$txt_req = $txt_req . " and (start_time - :delaiDigicode) < " . time();
+	$txt_req = $txt_req . " and (end_time + :delaiDigicode) > " . time();
+	
+	$req = $this->cnx->prepare($txt_req);
+	// liaison de la requête et de ses paramètres
+
+	$req->bindValue("digicodeSaisi", $digicodeSaisi, PDO::PARAM_STR);
+	$req->bindValue("delaiDigicode", $DELAI_DIGICODE, PDO::PARAM_INT);
+	
+	// exécution de la requete
+	$req->execute();
+	$nbReponses = $req->fetchColumn(0);
+	// libère les ressources du jeu de données
+	$req->closeCursor();
+	
+	// fourniture de la réponse
+	if ($nbReponses == 0)
+	    return "0";
+	    else
+	        return "1";
 	}
 	
 } // fin de la classe DAO

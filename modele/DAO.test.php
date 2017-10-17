@@ -145,6 +145,7 @@ echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><p>";
 /*
 // test de la méthode getLesReservations ----------------------------------------------------------
 // modifié par Jim le 25/5/2016
+/*
 echo "<h3>Test de getLesReservations : </h3>";
 $lesReservations = $dao->getLesReservations("jim");
 $nbReponses = sizeof($lesReservations);
@@ -162,12 +163,13 @@ foreach ($lesReservations as $uneReservation)
 {	echo ($uneReservation->toString());
 	echo ('<br>');
 }
+*/
 
 
 
-/*
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
+/*
 echo "<h3>Test de getLesSalles : </h3>";
 $lesSalles = $dao->getLesSalles();
 $nbReponses = sizeof($lesSalles);
@@ -178,7 +180,6 @@ foreach ($lesSalles as $uneSalle)
 	echo ('<br>');
 }
 */
-
 /*
 // test de la méthode getNiveauUtilisateur --------------------------------------------------------
 // modifié par Jim le 24/9/2015
@@ -194,6 +195,7 @@ echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "
 /*
 // test de la méthode getReservation --------------------------------------------------------------
 // modifié par Jim le 25/9/2015
+/*
 echo "<h3>Test de getReservation : </h3>";
 $laReservation = $dao->getReservation("4");
 if ($laReservation) 
@@ -206,6 +208,10 @@ if ($laReservation)
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
 */
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 
 /*
 
@@ -258,22 +264,22 @@ else
 
 
 
-/*
+
 // test de la méthode testerDigicodeBatiment ------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeBatiment : </h3>";
-$reponse = $dao->testerDigicodeBatiment("34214E");
-echo "<p>L'appel de testerDigicodeBatiment('34214E') donne : <b>" . $reponse . "</b><br>";
-*/
+$reponse = $dao->testerDigicodeBatiment("DEA7D1");
+echo "<p>L'appel de testerDigicodeBatiment('DEA7D1') donne : <b>" . $reponse . "</b><br>";
 
 
-/*
+
+
 // test de la méthode testerDigicodeSalle ---------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeSalle : </h3>";
-$reponse = $dao->testerDigicodeSalle("15", "410EE4");
-echo "<p>L'appel de testerDigicodeSalle('15', '410EE4') donne : <b>" . $reponse . "</b><br>";
-*/
+$reponse = $dao->testerDigicodeSalle("15", "01B13D");
+echo "<p>L'appel de testerDigicodeSalle('15', '01B13D') donne : <b>" . $reponse . "</b><br>";
+
 
 // ferme la connexion à MySQL :
 unset($dao);
