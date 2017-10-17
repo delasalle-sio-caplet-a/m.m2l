@@ -90,7 +90,7 @@ else
 */
 
 
-
+/*
 // test de la méthode envoyerMdp ------------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de envoyerMdp : </h3>";
@@ -100,7 +100,7 @@ if ($ok)
 	echo "<p>Mail bien envoyé !</p>";
 else
 	echo "<p>Echec lors de l'envoi du mail !</p>";
-
+*/
 
 /*
 // test de la méthode estLeCreateur ---------------------------------------------------------------
@@ -208,10 +208,6 @@ if ($laReservation)
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
 */
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 
 /*
 
