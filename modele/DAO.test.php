@@ -107,7 +107,6 @@ else
 */
 
 
-/*
 // test de la méthode estLeCreateur ---------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de estLeCreateur : </h3>";
@@ -115,7 +114,7 @@ if ($dao->estLeCreateur("admin", "11")) $estLeCreateur = "oui"; else $estLeCreat
 echo "<p>'admin' a créé la réservation 11 : <b>" . $estLeCreateur . "</b><br>";
 if ($dao->estLeCreateur("zenelsy", "11")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
 echo "'zenelsy' a créé la réservation 11 : <b>" . $estLeCreateur . "</b></p>";
-*/
+
 
 
 /*
@@ -213,10 +212,7 @@ if ($laReservation)
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
 */
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 
 /*
 
@@ -235,7 +231,7 @@ else
 	echo "<p>L'utilisateur admon n'existe pas !</p>";
 */
 
-
+/*
 // test de la méthode modifierMdpUser -------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de modifierMdpUser : </h3>";
@@ -254,7 +250,7 @@ if ($unUtilisateur) {
 }
 else
 	echo "<p>L'utilisateur admin n'existe pas !</p>";
-
+*/
 
 
 /*
@@ -269,7 +265,7 @@ else
 */
 
 
-
+/*
 // test de la méthode testerDigicodeBatiment ------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeBatiment : </h3>";
@@ -284,7 +280,7 @@ echo "<p>L'appel de testerDigicodeBatiment('DEA7D1') donne : <b>" . $reponse . "
 echo "<h3>Test de testerDigicodeSalle : </h3>";
 $reponse = $dao->testerDigicodeSalle("15", "01B13D");
 echo "<p>L'appel de testerDigicodeSalle('15', '01B13D') donne : <b>" . $reponse . "</b><br>";
-
+*/
 
 // ferme la connexion à MySQL :
 unset($dao);
