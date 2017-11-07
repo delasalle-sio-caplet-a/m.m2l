@@ -281,8 +281,8 @@ else
 // test de la méthode testerDigicodeBatiment ------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeBatiment : </h3>";
-$reponse = $dao->testerDigicodeBatiment("DEA7D1");
-echo "<p>L'appel de testerDigicodeBatiment('DEA7D1') donne : <b>" . $reponse . "</b><br>";
+$reponse = $dao->testerDigicodeBatiment("698DEF");
+echo "<p>L'appel de testerDigicodeBatiment('698DEF') donne : <b>" . $reponse . "</b><br>";
 
 */
 /*
