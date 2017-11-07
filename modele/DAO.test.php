@@ -18,14 +18,14 @@
 // connexion du serveur web à la base MySQL
 include_once ('DAO.class.php');
 $dao = new DAO();
-
+/*
 // test de la méthode creerLesDigicodesManquants --------------------------------------------------
 // modifié par Jim le 24/9/2015
 echo "<h3>Test de creerLesDigicodesManquants : </h3>";
 $dao->creerLesDigicodesManquants();
 echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
 echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
-
+/*
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
 // modifié par Jim le 28/9/2015
@@ -59,7 +59,7 @@ if ($ok)
 else
 	echo "jim n'a pas passé de réservations !</p>";
 */
-
+/*
 // test de la méthode confirmerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation dont le champ status est mis auparavant à 4 (état provisoire)
 // modifié par Jim le 28/9/2015
@@ -75,7 +75,7 @@ else
 
 	echo "<p>La réservation 2 n'existe pas !</p>";
 
-
+*/
 
 /*
 // test de la méthode creerUtilisateur ------------------------------------------------------------
@@ -90,17 +90,23 @@ else
 */
 
 
-/*
+
 // test de la méthode envoyerMdp ------------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de envoyerMdp : </h3>";
-$dao->modifierMdpUser("jim", "passe");
-$ok = $dao->envoyerMdp("jim", "passe");
+$dao->modifierMdpUser("admin", "passe");
+$ok = $dao->envoyerMdp("admin", "passe");
 if ($ok)
 	echo "<p>Mail bien envoyé !</p>";
 else
 	echo "<p>Echec lors de l'envoi du mail !</p>";
-*/
+
+$dao->modifierMdpUser("admin", "admin");
+$ok = $dao->envoyerMdp("admin", "admin");
+if ($ok)
+    echo "<p>Mail bien envoyé !</p>";
+else
+    echo "<p>Echec lors de l'envoi du mail !</p>";
 
 /*
 // test de la méthode estLeCreateur ---------------------------------------------------------------
@@ -166,10 +172,9 @@ foreach ($lesReservations as $uneReservation)
 */
 
 
-
+/*
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
-/*
 echo "<h3>Test de getLesSalles : </h3>";
 $lesSalles = $dao->getLesSalles();
 $nbReponses = sizeof($lesSalles);
@@ -207,9 +212,6 @@ if ($laReservation)
 	echo "<p>La réservation 12 existe : <br>" . $laReservation->toString() . "</p>";
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
-*/
-
-/*
 
 // test de la méthode getUtilisateur --------------------------------------------------------------
 // modifié par Jim le 30/9/2015
@@ -224,9 +226,9 @@ if ($unUtilisateur)
 	echo "<p>L'utilisateur admon existe : <br>" . $unUtilisateur->toString() . "</p>";
 else
 	echo "<p>L'utilisateur admon n'existe pas !</p>";
+
 */
-
-
+/*
 // test de la méthode modifierMdpUser -------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de modifierMdpUser : </h3>";
@@ -249,6 +251,8 @@ else
 
 
 
+
+
 // test de la méthode supprimerUtilisateur --------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de supprimerUtilisateur : </h3>";
@@ -260,22 +264,22 @@ else
 
 
 
-
+/*
 // test de la méthode testerDigicodeBatiment ------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeBatiment : </h3>";
 $reponse = $dao->testerDigicodeBatiment("698DEF");
 echo "<p>L'appel de testerDigicodeBatiment('698DEF') donne : <b>" . $reponse . "</b><br>";
 
-
-
+*/
+/*
 
 // test de la méthode testerDigicodeSalle ---------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeSalle : </h3>";
 $reponse = $dao->testerDigicodeSalle("15", "01B13D");
 echo "<p>L'appel de testerDigicodeSalle('15', '01B13D') donne : <b>" . $reponse . "</b><br>";
-
+*/
 
 // ferme la connexion à MySQL :
 unset($dao);
