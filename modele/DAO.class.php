@@ -386,7 +386,7 @@ class DAO
 	
 	public function getLesSalles()
 	{	// préparation de la requete de recherche
-	    $txt_req = "Select id, area_id, room_name, capacity, area_name";
+	    $txt_req = "Select mrbs_area.id, area_id, room_name, capacity, area_name";
 	    $txt_req = $txt_req . " from mrbs_room, mrbs_area where mrbs_room.area_id = mrbs_area.id order by area_name, room_name";
 	    
 	    $req = $this->cnx->prepare($txt_req);

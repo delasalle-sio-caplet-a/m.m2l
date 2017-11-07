@@ -179,7 +179,7 @@ foreach ($lesReservations as $uneReservation)
 */
 
 
-/*
+
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
 
