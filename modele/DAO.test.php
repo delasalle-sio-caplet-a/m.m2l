@@ -97,7 +97,7 @@ else
 */
 
 
-
+/*
 // test de la méthode envoyerMdp ------------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de envoyerMdp : </h3>";
@@ -179,7 +179,7 @@ foreach ($lesReservations as $uneReservation)
 */
 
 
-/*
+
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
 
@@ -265,7 +265,7 @@ else
 
 
 
-
+/*
 // test de la méthode supprimerUtilisateur --------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de supprimerUtilisateur : </h3>";
@@ -274,7 +274,7 @@ if ($ok)
  	echo "<p>Utilisateur bien supprimé !</p>";
 else
 	echo "<p>Echec lors de la suppression de l'utilisateur !</p>";
-
+*/
 
 
 /*
