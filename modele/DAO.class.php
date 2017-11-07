@@ -386,8 +386,8 @@ class DAO
 	
 	public function getLesSalles()
 	{	// préparation de la requete de recherche
-	    $txt_req = "Select id, area_id, room_name, sort_key, description, capacity, room_admin_email, custom_html";
-	    $txt_req = $txt_req . " from mrbs_room";
+	    $txt_req = "Select id, area_id, room_name, capacity, area_name";
+	    $txt_req = $txt_req . " from mrbs_room, mrbs_area where mrbs_room.area_id = mrbs_area.id order by area_name, room_name";
 	    
 	    $req = $this->cnx->prepare($txt_req);
 	 
@@ -402,13 +402,11 @@ class DAO
 	    {	// création d'un objet Reservation
 	        $unId = utf8_encode($uneLigne->id);
 	        $unRoomName = utf8_encode($uneLigne->room_name);
-	        $unSortKey = utf8_encode($uneLigne->sort_key);
-	        $unDescription = utf8_encode($uneLigne->description);
 	        $unCapacity = utf8_encode($uneLigne->capacity);
-	        $unRoomAdminEmail = utf8_encode($uneLigne->room_admin_email);
-	        $unCustomHtml = utf8_encode($uneLigne->custom_html);
+	        $unAreaName = utf8_encode($uneLigne->area_name);
+	   
 	        
-	        $uneSalle = new Salle($unId, $unRoomName, $unSortKey, $unDescription, $unCapacity, $unRoomAdminEmail, $unCustomHtml);
+	        $uneSalle = new Salle($unId, $unRoomName, $unCapacity, $unAreaName);
 	        // ajout de la réservation à la collection
 	        $lesSalles[] = $uneSalle;
 	        // extrait la ligne suivante
@@ -520,9 +518,10 @@ class DAO
 	
 	public function estLeCreateur($nomUser, $idReservation)
 	{	// préparation de la requete de recherche
-	    $txt_req = "Select count(*) from mrbs_users, mrbs_entry where create_by = name and name = :nomUser and id = :idReservation";
+	    $txt_req = "Select count(*) from mrbs_users, mrbs_entry";
 	    $txt_req = $txt_req . " where create_by = name and name = :nomUser and id = :idReservation";
 	    
+	    $req = $this->cnx->prepare($txt_req);
 	    // liaison de la requête et de ses paramètres
 	    $req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
 	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);

@@ -19,17 +19,18 @@
 include_once ('DAO.class.php');
 $dao = new DAO();
 
+/*
 // test de la méthode creerLesDigicodesManquants --------------------------------------------------
 // modifié par Jim le 24/9/2015
 echo "<h3>Test de creerLesDigicodesManquants : </h3>";
 $dao->creerLesDigicodesManquants();
 echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
 echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
-
+*/
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
 // modifié par Jim le 28/9/2015
-
+/*
 echo "<h3>Test de annulerReservation : </h3>";
 $laReservation = $dao->getReservation("4");
 if ($laReservation) {
@@ -42,7 +43,7 @@ if ($laReservation) {
 }
 else
 	echo "<p>La réservation 4 n'existe pas !</p>";
-
+*/
 /*
 // test de la méthode aPasseDesReservations -------------------------------------------------------
 // pour ce test, choisir un utilisateur avec des réservations et un autre sans réservation
@@ -59,7 +60,7 @@ if ($ok)
 else
 	echo "jim n'a pas passé de réservations !</p>";
 */
-
+/*
 // test de la méthode confirmerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation dont le champ status est mis auparavant à 4 (état provisoire)
 // modifié par Jim le 28/9/2015
@@ -74,7 +75,7 @@ if ($laReservation) {
 else
 
 	echo "<p>La réservation 2 n'existe pas !</p>";
-
+*/
 
 
 /*
@@ -103,10 +104,6 @@ else
 */
 
 
-
-
-/*
->>>>>>> branch 'master' of https://github.com/delasalle-sio-caplet-a/m.m2l.git
 // test de la méthode estLeCreateur ---------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de estLeCreateur : </h3>";
@@ -173,7 +170,7 @@ foreach ($lesReservations as $uneReservation)
 
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
-/*
+
 echo "<h3>Test de getLesSalles : </h3>";
 $lesSalles = $dao->getLesSalles();
 $nbReponses = sizeof($lesSalles);
@@ -183,7 +180,7 @@ foreach ($lesSalles as $uneSalle)
 {	echo ($uneSalle->getRoom_name());
 	echo ('<br>');
 }
-*/
+
 /*
 // test de la méthode getNiveauUtilisateur --------------------------------------------------------
 // modifié par Jim le 24/9/2015
