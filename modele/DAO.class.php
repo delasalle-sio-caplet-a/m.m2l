@@ -96,7 +96,6 @@ class DAO
 	}
 
 	
-	
 	public function aPasseDesReservations($nom) {
 	    	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 	  	// préparation de la requete de recherche
@@ -174,16 +173,20 @@ class DAO
 		 $req1->closeCursor();
 		 return;
 	 }
-	 public function envoyerMDP($nom, $password)
+	 public function envoyerMDP($nomUser, $nouveauMdp)
 	 {
-	     $txt_req = "UPDATE";
-	     $req = $this->cnx->prepare($txt_req);
-	     // liaison de la requête et de ses paramètres
-	     $req->bindValue("nom", utf8_decode($nom->getUtilisateur()), PDO::PARAM_STR);
-	     $req->bindValue("password", utf8_decode($password->getUtilisateur()), PDO::PARAM_STR);
-	     // exécution de la requete
-	     $ok = $req->execute();
+	     global $ADR_MAIL_EMETTEUR;
+	     
+	     if (! $this->existeUtilisateur ($nomUser)) return false;
+	     
+	     $adrMail = $this->getUtilisateur ($nomUser)->getEmail();
+	     
+	     $sujet = "Modification de votre mot de passe";
+	     $message = "Votre mot de passe a été modifié.\n\n";
+	     $message .= "Votre nouveau mot de passe est " .$nouveauMdp;
+	     $ok = Outils::envoyerMail($adrMail , $sujet , $message, $ADR_MAIL_EMETTEUR);
 	     return $ok;
+
 	 }
 
 	// enregistre l'utilisateur dans la bdd
@@ -351,9 +354,6 @@ class DAO
 		return $reponse;
 	}	
 
-
-
-
 	
 	// fonction modifierMdpUser
 	public function modifierMdpUser($nom, $nouveauMdp)
@@ -418,6 +418,7 @@ class DAO
 	    return $lesSalles;
 
 	}
+
 
 	public function getUtilisateur($nomUser)
 	{
