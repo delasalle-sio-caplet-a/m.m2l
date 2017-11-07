@@ -18,6 +18,9 @@
 // connexion du serveur web à la base MySQL
 include_once ('DAO.class.php');
 $dao = new DAO();
+
+
+
 /*
 // test de la méthode creerLesDigicodesManquants --------------------------------------------------
 // modifié par Jim le 24/9/2015
@@ -25,11 +28,14 @@ echo "<h3>Test de creerLesDigicodesManquants : </h3>";
 $dao->creerLesDigicodesManquants();
 echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
 echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
+
+*/
+
 /*
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
 // modifié par Jim le 28/9/2015
-
+/*
 echo "<h3>Test de annulerReservation : </h3>";
 $laReservation = $dao->getReservation("4");
 if ($laReservation) {
@@ -42,7 +48,7 @@ if ($laReservation) {
 }
 else
 	echo "<p>La réservation 4 n'existe pas !</p>";
-
+*/
 /*
 // test de la méthode aPasseDesReservations -------------------------------------------------------
 // pour ce test, choisir un utilisateur avec des réservations et un autre sans réservation
@@ -74,8 +80,9 @@ if ($laReservation) {
 else
 
 	echo "<p>La réservation 2 n'existe pas !</p>";
-
+<<<<<<< HEAD
 */
+
 
 /*
 // test de la méthode creerUtilisateur ------------------------------------------------------------
@@ -108,7 +115,7 @@ if ($ok)
 else
     echo "<p>Echec lors de l'envoi du mail !</p>";
 
-/*
+
 // test de la méthode estLeCreateur ---------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de estLeCreateur : </h3>";
@@ -116,7 +123,7 @@ if ($dao->estLeCreateur("admin", "11")) $estLeCreateur = "oui"; else $estLeCreat
 echo "<p>'admin' a créé la réservation 11 : <b>" . $estLeCreateur . "</b><br>";
 if ($dao->estLeCreateur("zenelsy", "11")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
 echo "'zenelsy' a créé la réservation 11 : <b>" . $estLeCreateur . "</b></p>";
-*/
+
 
 
 /*
@@ -175,6 +182,7 @@ foreach ($lesReservations as $uneReservation)
 /*
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
+
 echo "<h3>Test de getLesSalles : </h3>";
 $lesSalles = $dao->getLesSalles();
 $nbReponses = sizeof($lesSalles);
@@ -184,7 +192,7 @@ foreach ($lesSalles as $uneSalle)
 {	echo ($uneSalle->getRoom_name());
 	echo ('<br>');
 }
-*/
+
 /*
 // test de la méthode getNiveauUtilisateur --------------------------------------------------------
 // modifié par Jim le 24/9/2015
@@ -211,8 +219,12 @@ $laReservation = $dao->getReservation("12");
 if ($laReservation) 
 	echo "<p>La réservation 12 existe : <br>" . $laReservation->toString() . "</p>";
 else
-	echo "<p>La réservation 12 n'existe pas !</p>";	
 
+	echo "<p>La réservation 12 n'existe pas !</p>";	
+*/
+
+
+/*
 // test de la méthode getUtilisateur --------------------------------------------------------------
 // modifié par Jim le 30/9/2015
 echo "<h3>Test de getUtilisateur : </h3>";
@@ -228,6 +240,7 @@ else
 	echo "<p>L'utilisateur admon n'existe pas !</p>";
 
 */
+
 /*
 // test de la méthode modifierMdpUser -------------------------------------------------------------
 // modifié par Jim le 28/9/2015
@@ -247,7 +260,7 @@ if ($unUtilisateur) {
 }
 else
 	echo "<p>L'utilisateur admin n'existe pas !</p>";
-
+*/
 
 
 
