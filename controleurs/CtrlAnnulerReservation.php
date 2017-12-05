@@ -31,7 +31,7 @@ else
         include_once ('modele/DAO.class.php');
         $dao = new DAO();
         
-        if ( ! $dao->existeReservation($idRes) ) { // 3
+        if ( ! $dao->existeReservation($idRes)) { // 3
             // si le numéro de réservtion est inexistant, réaffichage de la vue de modification avec un message explicatif
             $message = 'Numéro de réservation inexistant !';
             $typeMessage = 'avertissement';
@@ -40,7 +40,7 @@ else
         }
         else
         {
-            if ( ! $dao->estLeCreateur($nom, $idRes) ){ // 4
+            if ( $dao->estLeCreateur($_SESSION['nom'], $idRes) == false) { // 4
                 // si vous etes pas l'auteur de la réservation, réaffichage de la vue de modification avec un message explicatif
                 $message = 'Vous n\'êtes pas le créateur de la réservation !';
                 $typeMessage = 'avertissement';
