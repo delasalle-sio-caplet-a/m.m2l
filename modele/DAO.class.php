@@ -514,7 +514,7 @@ class DAO
 	public function estLeCreateur($nomUser, $idReservation)
 	{	// préparation de la requete de recherche
 	    $txt_req = "Select count(*) from mrbs_users, mrbs_entry";
-	    $txt_req = $txt_req . " where create_by = name and name = :nomUser and id = :idReservation";
+	    $txt_req = $txt_req . " where create_by = :nomUser and id = :idReservation";
 	    
 	    $req = $this->cnx->prepare($txt_req);
 	    // liaison de la requête et de ses paramètres
