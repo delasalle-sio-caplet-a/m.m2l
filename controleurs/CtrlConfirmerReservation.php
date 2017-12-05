@@ -63,7 +63,7 @@ else
                 
                         if ($laReservation->getEnd_time() < time()){ // 6
                         // si la réservation est deja passé, réaffichage de la vue de modification avec un message explicatif
-                        $message = 'Reservation deja passé !';
+                        $message = 'Réservation déjà passée !';
                         $typeMessage = 'avertissement';
                         $themeFooter = $themeProbleme;
                         include_once ('vues/VueConfirmerReservation.php'); 
