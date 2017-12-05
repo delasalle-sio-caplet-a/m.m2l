@@ -59,7 +59,8 @@ else
                     include_once ('vues/VueConfirmerReservation.php');
                 }
                 else 
-                    {
+                {       $laReservation = $dao->getReservation($idRes);
+                
                         if ($laReservation->getEnd_time() < time()){ // 6
                         // si la réservation est deja passé, réaffichage de la vue de modification avec un message explicatif
                         $message = 'Reservation deja passé !';
