@@ -63,7 +63,7 @@ switch($action){
 		include_once ('controleurs/CtrlMenu.php'); break;
 	}
 	case 'DemanderMdp': {
-		//include_once ('controleurs/CtrlDemanderMdp.php'); break;
+		include_once ('controleurs/CtrlDemanderMdp.php'); break;
 		include_once ('controleurs/CtrlConnecter.php'); break;	// ligne provisoire
 	}
 	case 'ConsulterSalles': {
@@ -77,7 +77,7 @@ switch($action){
 		//include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
 	}
 	case 'AnnulerReservation': {
-		//include_once ('controleurs/CtrlAnnulerReservation.php'); break;
+		include_once ('controleurs/CtrlAnnulerReservation.php'); break;
 		include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
 	}
 	case 'ChangerDeMdp': {

@@ -1,9 +1,9 @@
 <?php
 // Projet Réservations M2L - version web mobile
-// fichier : controleurs/CtrlConsulterSalles.php
+// fichier : controleurs/CtrlConsulterReservations.php
 // Rôle : traiter la demande de consultation des réservations d'un utilisateur
-// écrit par Lucas le 17/10/2017
-// modifié par Lucas le 17/10/2017
+// écrit par Jim le 12/10/2015
+// modifié par Jim le 28/6/2016
 
 // on vérifie si le demandeur de cette action est bien authentifié
 if ( $_SESSION['niveauUtilisateur'] != 'utilisateur' && $_SESSION['niveauUtilisateur'] != 'administrateur') {
@@ -16,18 +16,21 @@ else {
     include_once ('modele/DAO.class.php');
     $dao = new DAO();
     
-    // récupération les salles disponibles à l'aide de la méthode getLesSalles de la classe DAO
-    $lesSalles = $dao->getLesSalles();
+    // mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
+    $dao->creerLesDigicodesManquants();
     
-    // mémorisation du nombre de salles disponibles
+    // récupération des réservations à venir créées par l'utilisateur à l'aide de la méthode getLesReservations de la classe DAO
+    $lesSalles = $dao->getLesSalles($nom);
+    
+    // mémorisation du nombre de réservations
     $nbReponses = sizeof($lesSalles);
     
     // préparation d'un message précédent la liste
     if ($nbReponses == 0) {
-        $message = "il n'y a aucune salles disponibles !";
+        $message = "Aucune salle disponible !";
     }
     else {
-        $message = "" . $nbReponses . " salles sont disponibles : ";
+        $message = $nbReponses . " salles disponibles en réservation :";
     }
     
     // affichage de la vue

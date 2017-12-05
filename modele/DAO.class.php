@@ -163,7 +163,7 @@ class DAO
 			 // liaison de la requête et de ses paramètres
 			 $req2->bindValue("id", $uneLigne->id, PDO::PARAM_INT);
 			 $req2->bindValue("digicode", $digicode, PDO::PARAM_STR);
-			 //$req2->bindValue("dateCreation", $dateCreation, PDO::PARAM_INT);
+
 			 // exécution de la requête
 			 $req2->execute();
 			 // extrait la ligne suivante
