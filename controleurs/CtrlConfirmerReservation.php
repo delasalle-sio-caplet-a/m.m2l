@@ -48,10 +48,10 @@ else
                 include_once ('vues/VueConfirmerReservation.php');
             }
             else
-            {
+            { 
                 $laReservation = $dao->getReservation($idRes);
                 
-                if ($laReservation->getStatus == 0) { // 5
+                if ($laReservation->getStatus() == 0) { // 5
                     // si le numéro de réservation est deja confirmer, réaffichage de la vue de modification avec un message explicatif
                     $message = 'Réservation déjà confirmée !';
                     $typeMessage = 'avertissement';
@@ -60,7 +60,7 @@ else
                 }
                 else 
                     {
-                        if ($laReservation->getEndtime() < time()){ // 6
+                        if ($laReservation->getEnd_time() < time()){ // 6
                         // si la réservation est deja passé, réaffichage de la vue de modification avec un message explicatif
                         $message = 'Reservation deja passé !';
                         $typeMessage = 'avertissement';
