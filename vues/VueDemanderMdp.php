@@ -34,10 +34,10 @@
 				<form action="index.php?action=DemanderMdp" method="post" data-ajax="false">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="txtName">Utilisateur :</label>
-						<input type="text" name="txtName" id="txtName" required placeholder="Entrez votre nom" value="<?php echo $name; ?>">
+						<input type="text" name="txtName" id="txtName" placeholder="Entrez votre nom" value="<?php echo $name; ?>">
 					</div>
 					<div data-role="fieldcontain">
-						<input type="submit" name="btnEnvoyerMdp" id="btnEnvoyerMdp" value="Supprimer l'utilisateur" data-mini="true">
+						<input type="submit" name="btnNouveauMdp" id="btnNouveauMdp" value="M'envoyer un nouveau mot de passe" data-mini="true">
 					</div>
 				</form>
 

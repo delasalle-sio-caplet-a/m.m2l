@@ -158,12 +158,11 @@ class DAO
 		 {	// génération aléatoire d'un digicode de 6 caractères hexadécimaux
 			 $digicode = $this->genererUnDigicode();
 			 // préparation de la requete d'insertion
-			 $txt_req2 = "insert into mrbs_entry_digicode (id, digicode, dateCreation) values (:id, :digicode, :dateCreation)";
+			 $txt_req2 = "insert into mrbs_entry_digicode (id, digicode) values (:id, :digicode)";
 			 $req2 = $this->cnx->prepare($txt_req2);
 			 // liaison de la requête et de ses paramètres
 			 $req2->bindValue("id", $uneLigne->id, PDO::PARAM_INT);
 			 $req2->bindValue("digicode", $digicode, PDO::PARAM_STR);
-			 $req2->bindValue("dateCreation", $dateCreation, PDO::PARAM_INT);
 			 // exécution de la requête
 			 $req2->execute();
 			 // extrait la ligne suivante

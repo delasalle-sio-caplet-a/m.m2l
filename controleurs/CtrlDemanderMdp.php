@@ -6,12 +6,6 @@
 // Mise à jour : 2/6/2016 par JM CARTRON
 
 // on vérifie si le demandeur de cette action a le niveau administrateur
-if ($_SESSION['niveauUtilisateur'] != 'administrateur') {
-    // si l'utilisateur n'a pas le niveau administrateur, il s'agit d'une tentative d'accès frauduleux
-    // dans ce cas, on provoque une redirection vers la page de connexion
-    header ("Location: index.php?action=Deconnecter");
-}
-else {
     if ( ! isset ($_POST ["txtName"]) ) {
         // si les données n'ont pas été postées, c'est le premier appel du formulaire : affichage de la vue sans message d'erreur
         $name = '';
@@ -24,15 +18,12 @@ else {
         // récupération des données postées
         if ( empty ($_POST ["txtName"]) == true)  $name = "";  else   $name = $_POST ["txtName"];
         
-        // inclusion de la classe Outils pour utiliser les méthodes statiques estUneAdrMailValide et creerMdp
-        include_once ('modele/Outils.class.php');
-        
         if ($name == '') {
             // si les données sont incorrectes ou incomplètes, réaffichage de la vue de suppression avec un message explicatif
             $message = 'Données incomplètes ou incorrectes !';
             $typeMessage = 'avertissement';
             $themeFooter = $themeProbleme;
-            include_once ('vues/VueSupprimerUtilisateur.php');
+            include_once ('vues/VueDemanderMdp.php');
         }
         else {
             // connexion du serveur web à la base MySQL
@@ -40,48 +31,41 @@ else {
             $dao = new DAO();
             global $ADR_MAIL_EMETTEUR;
             
-            if (! $dao->existeUtilisateur($name) ) {
+            if ( ! $dao->existeUtilisateur($name) ) {
                 // si le nom existe déjà, réaffichage de la vue
                 $message = "Nom d'utilisateur inexistant !";
                 $typeMessage = 'avertissement';
                 $themeFooter = $themeProbleme;
-                include_once ('vues/VueSupprimerUtilisateur.php');
+                include_once ('vues/VueDemanderMdp.php');
             }
-            else {
-                $adresseDestinataire = $dao->getUtilisateur($name)->getEmail();
-                $ok = $dao->supprimerUtilisateur($name);
+                  
+           else {
+               $nouveauMdp = Outils::creerMdp();
+               $nouveauMdp2 = $dao->modifierMdpUser($nom, $nouveauMdp);
+               // envoi d'un mail de confirmation de l'enregistrement
+               $adresseDestinataire = $dao->getUtilisateur($name)->getEmail();
+               
+                $sujet = "Envoi nouveau mot de passe";
+                $contenuMail = $dao->envoyerMdp($nom, $nouveauMdp);
+                $contenuMail = "L'administrateur du système de réservations de la M2L vous a créé un nouveau mot de passe.\n\n".$nouveauMdp;
+                $adresseEmetteur = $ADR_MAIL_EMETTEUR;
+                
+                $ok = Outils::envoyerMail($adresseDestinataire, $sujet, $contenuMail, $adresseEmetteur);
                 if ( ! $ok ) {
-                    // si l'enregistrement a échoué, réaffichage de la vue avec un message explicatif
-                    $message = "Problème lors de la suppression !";
+                    // si l'envoi de mail a échoué, réaffichage de la vue avec un message explicatif
+                    $message = "L'envoi du mail a rencontré un problème !";
                     $typeMessage = 'avertissement';
                     $themeFooter = $themeProbleme;
-                    include_once ('vues/VueSupprimerUtilisateur.php');
+                    include_once ('vues/VueDemanderMdp.php');
                 }
                 else {
-                    // envoi d'un mail de confirmation de l'enregistrement
-                    
-                    $sujet = "Suppression de votre compte dans le système de réservation de M2L";
-                    $contenuMail = "L'administrateur du système de réservations de la M2L vient de supprimer votre compte.\n\n";
-                    $adresseEmetteur = $ADR_MAIL_EMETTEUR;
-                    
-                    $ok = Outils::envoyerMail($adresseDestinataire, $sujet, $contenuMail, $adresseEmetteur);
-                    if ( ! $ok ) {
-                        // si l'envoi de mail a échoué, réaffichage de la vue avec un message explicatif
-                        $message = "Suppression effectuée.<br>L'envoi du mail à l'utilisateur a rencontré un problème !";
-                        $typeMessage = 'avertissement';
-                        $themeFooter = $themeProbleme;
-                        include_once ('vues/VueSupprimerUtilisateur.php');
-                    }
-                    else {
-                        // tout a fonctionné
-                        $message = "Suppression effectuée.<br>Un mail va être envoyé à l'utilisateur !";
-                        $typeMessage = 'information';
-                        $themeFooter = $themeNormal;
-                        include_once ('vues/VueSupprimerUtilisateur.php');
-                    }
+                    // tout a fonctionné
+                    $message = "Nouveau mot de passe créé :  <br>Un mail va vous être envoyé !";
+                    $typeMessage = 'information';
+                    $themeFooter = $themeNormal;
+                    include_once ('vues/VueDemanderMdp.php');
                 }
-                }
-            unset($dao);		// fermeture de la connexion à MySQL
+            }
         }
+        unset($dao);		// fermeture de la connexion à MySQL
     }
-}
