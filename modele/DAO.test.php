@@ -28,8 +28,8 @@ echo "<h3>Test de creerLesDigicodesManquants : </h3>";
 $dao->creerLesDigicodesManquants();
 echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
 echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
-
 */
+
 
 /*
 // test de la méthode annulerReservation --------------------------------------------------------
@@ -97,7 +97,7 @@ else
 */
 
 
-
+/*
 // test de la méthode envoyerMdp ------------------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de envoyerMdp : </h3>";
@@ -114,6 +114,7 @@ if ($ok)
     echo "<p>Mail bien envoyé !</p>";
 else
     echo "<p>Echec lors de l'envoi du mail !</p>";
+*/
 
 
 // test de la méthode estLeCreateur ---------------------------------------------------------------
@@ -158,11 +159,10 @@ echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><p>";
 /*
 // test de la méthode getLesReservations ----------------------------------------------------------
 // modifié par Jim le 25/5/2016
-/*
 echo "<h3>Test de getLesReservations : </h3>";
-$lesReservations = $dao->getLesReservations("jim");
+$lesReservations = $dao->getLesReservations("admin");
 $nbReponses = sizeof($lesReservations);
-echo "<p>Nombre de réservations de 'jim' : " . $nbReponses . "</p>";
+echo "<p>Nombre de réservations de 'admin' : " . $nbReponses . "</p>";
 // affichage des réservations
 foreach ($lesReservations as $uneReservation)
 {	echo ($uneReservation->toString());
@@ -179,7 +179,7 @@ foreach ($lesReservations as $uneReservation)
 */
 
 
-
+/*
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
 
@@ -192,6 +192,8 @@ foreach ($lesSalles as $uneSalle)
 {	echo ($uneSalle->getRoom_name());
 	echo ('<br>');
 }
+*/
+
 
 /*
 // test de la méthode getNiveauUtilisateur --------------------------------------------------------
@@ -265,7 +267,7 @@ else
 
 
 
-
+/*
 // test de la méthode supprimerUtilisateur --------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de supprimerUtilisateur : </h3>";
@@ -274,7 +276,7 @@ if ($ok)
  	echo "<p>Utilisateur bien supprimé !</p>";
 else
 	echo "<p>Echec lors de la suppression de l'utilisateur !</p>";
-
+*/
 
 
 /*

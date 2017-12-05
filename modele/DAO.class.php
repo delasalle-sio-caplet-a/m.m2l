@@ -158,12 +158,12 @@ class DAO
 		 {	// génération aléatoire d'un digicode de 6 caractères hexadécimaux
 			 $digicode = $this->genererUnDigicode();
 			 // préparation de la requete d'insertion
-			 $txt_req2 = "insert into mrbs_entry_digicode (id, digicode, dateCreation) values (:id, :digicode, :dateCreation)";
+			 $txt_req2 = "insert into mrbs_entry_digicode (id, digicode) values (:id, :digicode)";
 			 $req2 = $this->cnx->prepare($txt_req2);
 			 // liaison de la requête et de ses paramètres
 			 $req2->bindValue("id", $uneLigne->id, PDO::PARAM_INT);
 			 $req2->bindValue("digicode", $digicode, PDO::PARAM_STR);
-			 $req2->bindValue("dateCreation", $dateCreation, PDO::PARAM_INT);
+			 //$req2->bindValue("dateCreation", $dateCreation, PDO::PARAM_INT);
 			 // exécution de la requête
 			 $req2->execute();
 			 // extrait la ligne suivante
@@ -173,6 +173,7 @@ class DAO
 		 $req1->closeCursor();
 		 return;
 	 }
+	 
 	 public function envoyerMDP($nomUser, $nouveauMdp)
 	 {
 	     global $ADR_MAIL_EMETTEUR;
@@ -514,13 +515,13 @@ class DAO
 	
 	public function estLeCreateur($nomUser, $idReservation)
 	{	// préparation de la requete de recherche
-	    $txt_req = "Select count(*) from mrbs_users, mrbs_entry";
-	    $txt_req = $txt_req . " where create_by = name and name = :nomUser and id = :idReservation";
+	    $txt_req = "Select count(*) from mrbs_entry";
+	    $txt_req = $txt_req . " where create_by = :nomUser and id = :idReservation";
 	    
 	    $req = $this->cnx->prepare($txt_req);
 	    // liaison de la requête et de ses paramètres
 	    $req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
-	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
+	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);
 	    // exécution de la requete
 	    $req->execute();
 	    $nbReponses = $req->fetchColumn(0);
@@ -529,9 +530,9 @@ class DAO
 	    
 	    // fourniture de la réponse
 	    if ($nbReponses == 0)
-	        return false;
-	        else
-	            return true;
+	       return false;
+	    else
+	       return true;
 	}
 	
 } // fin de la classe DAO
