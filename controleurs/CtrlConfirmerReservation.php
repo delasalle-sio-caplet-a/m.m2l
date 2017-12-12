@@ -49,8 +49,6 @@ else
             }
             else
             {   
-                if ( $laReservation->getStatus() == 0) { // 5
-            { 
                 $laReservation = $dao->getReservation($idRes);
                 
                 if ($laReservation->getStatus() == 0) { // 5
@@ -116,5 +114,3 @@ else
     } // 2
 } // 1
         }
-    }
-}
