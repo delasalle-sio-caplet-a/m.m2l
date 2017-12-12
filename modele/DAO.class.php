@@ -509,13 +509,13 @@ class DAO
 	
 	public function estLeCreateur($nomUser, $idReservation)
 	{	// préparation de la requete de recherche
-	    $txt_req = "Select count(*) from mrbs_users, mrbs_entry";
+	    $txt_req = "Select count(*) from mrbs_entry";
 	    $txt_req = $txt_req . " where create_by = :nomUser and id = :idReservation";
 	    
 	    $req = $this->cnx->prepare($txt_req);
 	    // liaison de la requête et de ses paramètres
 	    $req->bindValue("nomUser", $nomUser, PDO::PARAM_STR);
-	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
+	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);
 	    // exécution de la requete
 	    $req->execute();
 	    $nbReponses = $req->fetchColumn(0);
@@ -525,8 +525,8 @@ class DAO
 	    // fourniture de la réponse
 	    if ($nbReponses == 0)
 	        return false;
-	        else
-	        return true;
+	           else
+	               return true;
 	}
 	
 } // fin de la classe DAO
