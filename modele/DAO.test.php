@@ -124,6 +124,10 @@ if ($dao->estLeCreateur("ackermanns", "1")) $estLeCreateur = "oui"; else $estLeC
 echo "<p>'ackermanns' a créé la réservation 1 : <b>" . $estLeCreateur . "</b><br>";
 if ($dao->estLeCreateur("zenelsy", "1")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
 echo "'zenelsy' a créé la réservation 4 : <b>" . $estLeCreateur . "</b></p>";
+if ($dao->estLeCreateur("admin", "2")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
+echo "<p>'admin' a créé la réservation 2 : <b>" . $estLeCreateur . "</b><br>";
+if ($dao->estLeCreateur("zenelsy", "11")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
+echo "'zenelsy' a créé la réservation 11 : <b>" . $estLeCreateur . "</b></p>";
 
 
 

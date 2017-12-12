@@ -311,22 +311,18 @@ class DAO
 	        $unRoomName = utf8_encode($uneLigne->room_name);
 	        $unStatus = utf8_encode($uneLigne->status);
 	        $unDigicode = utf8_encode($uneLigne->digicode);
-	        
-	        
+	        	        
 	        $uneReservation = new Reservation($unId, $unTimeStamp, $unStartTime, $unEndTime, $unRoomName, $unStatus, $unDigicode);
             
-	    // libère les ressources du jeu de données
-	    $req->closeCursor();
-	    
-	    return $uneReservation;
-	    
+    	    // libère les ressources du jeu de données
+    	    $req->closeCursor();
+    	    
+    	    return $uneReservation;
 	    }
-	    
 	    else 
-	        
 	        return null;
-	    
 	}
+	
 	// fournit le niveau d'un utilisateur identifié par $nomUser et $mdpUser
 	// renvoie "utilisateur" ou "administrateur" si authentification correcte, "inconnu" sinon
 	// modifié par Jim le 5/5/2015
@@ -531,6 +527,8 @@ class DAO
 	        return false;
 	    else
 	        return true;
+	           else
+	               return true;
 	}
 	
 } // fin de la classe DAO
