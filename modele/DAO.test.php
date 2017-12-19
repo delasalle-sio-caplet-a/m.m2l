@@ -20,7 +20,7 @@ include_once ('DAO.class.php');
 $dao = new DAO();
 
 
-/*
+
 
 // test de la méthode creerLesDigicodesManquants --------------------------------------------------
 // modifié par Jim le 24/9/2015
@@ -28,9 +28,9 @@ echo "<h3>Test de creerLesDigicodesManquants : </h3>";
 $dao->creerLesDigicodesManquants();
 echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
 echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
+
+
 /*
-
-
 
 // test de la méthode annulerReservation --------------------------------------------------------
 // pour ce test, utiliser une réservation existante
@@ -120,14 +120,18 @@ else
 // test de la méthode estLeCreateur ---------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de estLeCreateur : </h3>";
-if ($dao->estLeCreateur("admin", "11")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
-echo "<p>'admin' a créé la réservation 11 : <b>" . $estLeCreateur . "</b><br>";
+if ($dao->estLeCreateur("ackermanns", "1")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
+echo "<p>'ackermanns' a créé la réservation 1 : <b>" . $estLeCreateur . "</b><br>";
+if ($dao->estLeCreateur("zenelsy", "1")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
+echo "'zenelsy' a créé la réservation 4 : <b>" . $estLeCreateur . "</b></p>";
+if ($dao->estLeCreateur("admin", "2")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
+echo "<p>'admin' a créé la réservation 2 : <b>" . $estLeCreateur . "</b><br>";
 if ($dao->estLeCreateur("zenelsy", "11")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
 echo "'zenelsy' a créé la réservation 11 : <b>" . $estLeCreateur . "</b></p>";
 
 
 
-
+/*
 // test de la méthode existeReservation -----------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de existeReservation : </h3>";
@@ -263,7 +267,7 @@ if ($unUtilisateur) {
 }
 else
 	echo "<p>L'utilisateur admin n'existe pas !</p>";
-
+*/
 
 
 
@@ -280,7 +284,7 @@ else
 */
 
 
-
+/*
 // test de la méthode testerDigicodeBatiment ------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeBatiment : </h3>";
@@ -295,7 +299,7 @@ echo "<p>L'appel de testerDigicodeBatiment('698DEF') donne : <b>" . $reponse . "
 echo "<h3>Test de testerDigicodeSalle : </h3>";
 $reponse = $dao->testerDigicodeSalle("15", "01B13D");
 echo "<p>L'appel de testerDigicodeSalle('15', '01B13D') donne : <b>" . $reponse . "</b><br>";
-
+*/
 
 // ferme la connexion à MySQL :
 unset($dao);

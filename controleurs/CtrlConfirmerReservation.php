@@ -48,12 +48,10 @@ else
                 include_once ('vues/VueConfirmerReservation.php');
             }
             else
-            {
-                // connexion du serveur web à la base MySQL
-                include_once ('modele/Reservation.class.php');
-                $reservation = new Reservation();
+            {   
+                $laReservation = $dao->getReservation($idRes);
                 
-                if ( $reservation->$getStatus == 0) { // 5
+                if ($laReservation->getStatus() == 0) { // 5
                     // si le numéro de réservation est deja confirmer, réaffichage de la vue de modification avec un message explicatif
                     $message = 'Réservation déjà confirmée !';
                     $typeMessage = 'avertissement';
@@ -63,9 +61,11 @@ else
                 else 
                     {
                         $laReservation = $dao->getReservation($idRes);
-                        if ($laReservation->getEndtime() < time()){ // 6
+                {       $laReservation = $dao->getReservation($idRes);
+                
+                        if ($laReservation->getEnd_time() < time()){ // 6
                         // si la réservation est deja passé, réaffichage de la vue de modification avec un message explicatif
-                        $message = 'Reservation deja passé !';
+                        $message = 'Réservation déjà passée !';
                         $typeMessage = 'avertissement';
                         $themeFooter = $themeProbleme;
                         include_once ('vues/VueConfirmerReservation.php'); 
@@ -108,9 +108,9 @@ else
                       } // 7
                    } // 6
                 } // 5
-                unset($reservation);		// fermeture de la connexion à MySQL    
             } // 4
        } // 3
             unset($dao);		// fermeture de la connexion à MySQL    
     } // 2
 } // 1
+        }

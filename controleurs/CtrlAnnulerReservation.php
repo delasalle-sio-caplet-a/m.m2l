@@ -9,7 +9,7 @@ if ( ! isset ($_POST ["txtIdReservation"]) ) { // 1
     // si les données n'ont pas été postées, c'est le premier appel du formulaire : affichage de la vue sans message d'erreur
     $idRes = '';
     $message = '';
-    $typeMessage = '';                        // 2 valeurs possibles : 'information' ou 'avertissement'
+    $typeMessage = '';			// 2 valeurs possibles : 'information' ou 'avertissement'
     $themeFooter = $themeNormal;
     include_once ('vues/VueAnnulerReservation.php');
 }
@@ -31,8 +31,8 @@ else
         include_once ('modele/DAO.class.php');
         $dao = new DAO();
         
-        if ( ! $dao->existeReservation($idRes)) { // 3
-            // si le numéro de réservtion est inexistant, réaffichage de la vue de modification avec un message explicatif
+        if ( ! $dao->existeReservation($idRes) ) { // 3
+            // si le numéro de réservation est inexistant, réaffichage de la vue de modification avec un message explicatif
             $message = 'Numéro de réservation inexistant !';
             $typeMessage = 'avertissement';
             $themeFooter = $themeProbleme;
@@ -44,17 +44,25 @@ else
             if ($laReservation->getEnd_time()< time()){
                 $message = "Cette réservation est déjà passée !";
 
+
+        {
+            if ($dao->estLeCreateur($_SESSION['nom'], $idRes) == false) { // 4
+                // si vous etes pas l'auteur de la réservation, réaffichage de la vue de modification avec un message explicatif
+                $message = "Vous n'êtes pas le créateur de la réservation !";
                 $typeMessage = 'avertissement';
                 $themeFooter = $themeProbleme;
                 include_once ('vues/VueAnnulerReservation.php');
             }
-            else {
-                if ( $dao->estLeCreateur($_SESSION['nom'], $idRes) == false) { // 4
-                    // si vous etes pas l'auteur de la réservation, réaffichage de la vue de modification avec un message explicatif
-                    $message = 'Vous n\'êtes pas le créateur de la réservation !';
+            else
+            {   
+                $laReservation = $dao->getReservation($idRes);
+                if ($laReservation->getEnd_time() < time()){ // 6
+                    // si la réservation est deja passé, réaffichage de la vue de modification avec un message explicatif
+                    $message = 'Reservation deja passé !';
                     $typeMessage = 'avertissement';
                     $themeFooter = $themeProbleme;
                     include_once ('vues/VueAnnulerReservation.php');
+
             }
             else
 
@@ -68,8 +76,11 @@ else
                     include_once ('vues/VueConfirmerReservation.php');
                 }
 
+                else
+
                 {
-                    if ( ! $ok1 ) { // 6
+                    $ok = $dao->annulerReservation($idRes);
+                    if ( ! $ok ) { // 7
                         // si l'enregistrement a échoué, réaffichage de la vue avec un message explicatif
                         $message = "Problème lors de l'enregistrement !";
                         $typeMessage = 'avertissement';
@@ -80,13 +91,19 @@ else
                     else
                     {
                         // envoi d'un mail de confirmation de l'enregistrement
-                        $sujet = "Annulation de votre reservation";
+                        $sujet = "annulation de votre reservation";
                         $contenuMail = "Vous venez d'annuler votre reservation sur le site M2L\n\n";
+                        $contenuMail .= "Votre id de reservation est : " . $idRes . "\n";
+
                         
                         $adrMail = $dao->getUtilisateur($nom)->getEmail();
                         
+
                         $ok2 = Outils::envoyerMail($adrMail, $sujet, $contenuMail, $ADR_MAIL_EMETTEUR);
                         if ( ! $ok ) { // 7
+
+                        $ok = Outils::envoyerMail($adrMail, $sujet, $contenuMail, $ADR_MAIL_EMETTEUR);
+                        if ( ! $ok ) { // 8
                             // si l'envoi de mail a échoué, réaffichage de la vue avec un message explicatif
                             $message = "Enregistrement effectué.<br>L'envoi du mail à l'utilisateur a rencontré un problème !";
                             $typeMessage = 'avertissement';
@@ -100,13 +117,17 @@ else
                             $typeMessage = 'information';
                             $themeFooter = $themeNormal;
                             include_once ('vues/VueAnnulerReservation.php');
-                        }  // 7
-                    } // 6
-                } // 5
+                        }  // 8
+                    } // 7
+                } // 6
+                unset($reservation);		// fermeture de la connexion à MySQL
             } // 4
         } // 3
-        unset($dao);                // fermeture de la connexion à MySQL
+        unset($dao);		// fermeture de la connexion à MySQL
     } // 2
+}
+        }
+    }
+}
+}
 
-}
-}
