@@ -84,7 +84,7 @@ else
                         {
                             // envoi d'un mail de confirmation de l'enregistrement
                             $sujet = "confirmation de votre reservation";
-                            $contenuMail = "Vous venez de confirmer votre reservation sur le site M2L\n\n";
+                            $contenuMail = "Vous venez de confirmer votre réservation sur le site M2L\n\n";
                             $contenuMail .= "Votre id de reservation est : " . $idRes . "\n";
                             
                             $adrMail = $dao->getUtilisateur($nom)->getEmail();

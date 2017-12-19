@@ -34,11 +34,11 @@
 				<form action="index.php?action=CreerUtilisateur" method="post" data-ajax="false">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="txtName">Utilisateur :</label>
-						<input type="text" name="txtName" id="txtName" required placeholder="Entrez le nom de l'utilisateur" value="<?php echo $name; ?>">
+						<input type="text" name="txtName" id="txtName" placeholder="Entrez le nom de l'utilisateur" value="<?php echo $name; ?>">
 					</div>
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="txtAdrMail">Adresse mail :</label>
-						<input type="email" name="txtAdrMail" id="txtAdrMail" required placeholder="Entrez l'adresse mail" value="<?php echo $adrMail; ?>">
+						<input type="email" name="txtAdrMail" id="txtAdrMail" placeholder="Entrez l'adresse mail" value="<?php echo $adrMail; ?>">
 					</div>
 					<div data-role="fieldcontain">
 						<fieldset data-role="controlgroup">

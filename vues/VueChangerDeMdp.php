@@ -14,11 +14,32 @@
 		<script>
 			// associe une fonction à l'événement pageinit
 			$(document).bind('pageinit', function() {
+				// l'événement "click" de la case à cocher "caseAfficherMdp" est associé à la fonction "afficherMdp"
+				$('#caseAfficherMdp').click( afficherMdp );
+				
+				// selon l'état de la case, le type de la zone de saisie est "text" ou "password"
+				afficherMdp();
+				
+				// affichage du dernier mot de passe saisi (désactivé ici, car effectué dans le code HTML du formulaire)
+				// $('#txtMotDePasse').attr('value','<?php echo $mdp; ?>');
+				
 				<?php if ($typeMessage != '') { ?>
 					// affiche la boîte de dialogue 'affichage_message'
 					$.mobile.changePage('#affichage_message', {transition: "<?php echo $transition; ?>"});
 				<?php } ?>
 			} );
+			// selon l'état de la case, le type de la zone de saisie est "text" ou "password"
+			function afficherMdp() {
+				// tester si la case est cochée
+				if ( $("#caseAfficherMdp").is(":checked") ) {
+					// la zone passe en <input type="text">
+					$('#txtMotDePasse').attr('type', 'text');
+				}
+				else {
+					// la zone passe en <input type="password">
+					$('#txtMotDePasse').attr('type', 'password');
+				};
+			}
 		</script>
 	</head>
 	 
@@ -34,11 +55,15 @@
 				<form action="index.php?action=ChangerDeMdp" method="post" data-ajax="false">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="txtMdp">Nouveau mot de passe :</label>
-						<input type="text" name="txtMdp" id="txtMdp" required placeholder="Mon nouveau mot de passe" value="<?php echo $mdp; ?>">
+						<input type="text" name="txtMdp" id="txtMdp" placeholder="Mon nouveau mot de passe" value="<?php echo $mdp; ?>">
 					</div>
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="txtConfirmation">Confirmation nouveau mot de passe :</label>
-						<input type="text" name="txtConfirmation" id="txtConfirmation" required placeholder="Confirmation de mon nouveau mot de passe" value="<?php echo $confirmation; ?>">
+						<input type="text" name="txtConfirmation" id="txtConfirmation" placeholder="Confirmation de mon nouveau mot de passe" value="<?php echo $confirmation; ?>">
+					</div>
+					<div data-role="fieldcontain" data-type="horizontal" class="ui-hide-label">
+								<label for="caseAfficherMdp">Afficher le mot de passe en clair</label>
+								<input type="checkbox" name="caseAfficherMdp" id="caseAfficherMdp" onclick="afficherMdp();" data-mini="true" <?php if ($afficherMdp == 'on') echo 'checked'; ?>>
 					</div>
 					<div data-role="fieldcontain">
 						<input type="submit" name="btnEnvoyerdonnees" id="btnEnvoyerdonnees" value="Envoyer les données" data-mini="true">

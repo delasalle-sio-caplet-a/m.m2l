@@ -52,7 +52,7 @@ else
                 $laReservation = $dao->getReservation($idRes);
                 if ($laReservation->getEnd_time() < time()){ // 6
                     // si la réservation est deja passé, réaffichage de la vue de modification avec un message explicatif
-                    $message = 'Reservation deja passé !';
+                    $message = 'Réservation déjà passée !';
                     $typeMessage = 'avertissement';
                     $themeFooter = $themeProbleme;
                     include_once ('vues/VueAnnulerReservation.php');
@@ -70,8 +70,8 @@ else
                     else
                     {
                         // envoi d'un mail de confirmation de l'enregistrement
-                        $sujet = "annulation de votre reservation";
-                        $contenuMail = "Vous venez d'annuler votre reservation sur le site M2L\n\n";
+                        $sujet = "Annulation de votre réservation";
+                        $contenuMail = "Vous venez d'annuler votre réservation sur le site M2L\n\n";
                         $contenuMail .= "Votre id de reservation est : " . $idRes . "\n";
                         
                         $adrMail = $dao->getUtilisateur($nom)->getEmail();

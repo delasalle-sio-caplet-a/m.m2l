@@ -20,7 +20,7 @@ else {
     $dao->creerLesDigicodesManquants();
     
     // récupération des réservations à venir créées par l'utilisateur à l'aide de la méthode getLesReservations de la classe DAO
-    $lesSalles = $dao->getLesSalles($nom);
+    $lesSalles = $dao->getLesSalles();
     
     // mémorisation du nombre de réservations
     $nbReponses = sizeof($lesSalles);

@@ -19,6 +19,7 @@ else
     // récupération des données postées
     if ( empty ($_POST ["txtMdp"]) == true)  $mdp = "";  else   $mdp = $_POST ["txtMdp"];
     if ( empty ($_POST ["txtConfirmation"]) == true)  $confirmation = "";  else   $confirmation = $_POST ["txtConfirmation"];
+    if ( empty ($_POST ["caseAfficherMdp"]) == true)  $afficherMdp = "off";  else   $afficherMdp = $_POST ["caseAfficherMdp"];
 
     if ($mdp == '' || $confirmation == '') { // 2
         // si les données sont incomplètes, réaffichage de la vue de modification avec un message explicatif

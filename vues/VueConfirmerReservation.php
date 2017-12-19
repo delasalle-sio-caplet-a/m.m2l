@@ -34,7 +34,7 @@
 				<form action="index.php?action=ConfirmerReservation" method="post" data-ajax="false">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="txtIdReservation">Entrez le numéro de réservation :</label>
-						<input type="text" name="txtIdReservation" id="txtIdReservation" required placeholder="Entrez le numéro de réservation" value="<?php echo $idRes; ?>">
+						<input type="text" name="txtIdReservation" id="txtIdReservation" placeholder="Entrez le numéro de réservation" value="<?php echo $idRes; ?>">
 					</div>
 					<div data-role="fieldcontain">
 						<input type="submit" name="btnConfirmerRéservation" id="btnConfirmerRéservation" value="Confirmer la réservation" data-mini="true">

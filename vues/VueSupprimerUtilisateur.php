@@ -34,7 +34,7 @@
 				<form action="index.php?action=SupprimerUtilisateur" method="post" data-ajax="false">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="txtName">Utilisateur :</label>
-						<input type="text" name="txtName" id="txtName" required placeholder="Entrez le nom de l'utilisateur" value="<?php echo $name; ?>">
+						<input type="text" name="txtName" id="txtName" placeholder="Entrez le nom de l'utilisateur" value="<?php echo $name; ?>">
 					</div>
 					<div data-role="fieldcontain">
 						<input type="submit" name="btnSupprUtilisateur" id="btnSupprUtilisateur" value="Supprimer l'utilisateur" data-mini="true">
