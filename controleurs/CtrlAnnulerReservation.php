@@ -40,22 +40,24 @@ else
         }
         else
         {
-            if ($dao->estLeCreateur($_SESSION['nom'], $idRes) == false) { // 4
-                // si vous etes pas l'auteur de la réservation, réaffichage de la vue de modification avec un message explicatif
-                $message = 'Vous n\'êtes pas le créateur de la réservation !';
+            $laReservation = $dao->getReservation($idRes);
+            if ($laReservation->getEnd_time()< time()){
+                $message = "Cette réservation est déjà passée !";
+
                 $typeMessage = 'avertissement';
                 $themeFooter = $themeProbleme;
                 include_once ('vues/VueAnnulerReservation.php');
             }
             else {
-                $laReservation = $dao->getReservation($idRes);
-                if ($laReservation->getEnd_time()< time()){
-                    $message = "Cette réservation est déjà passée !";
+                if ( $dao->estLeCreateur($_SESSION['nom'], $idRes) == false) { // 4
+                    // si vous etes pas l'auteur de la réservation, réaffichage de la vue de modification avec un message explicatif
+                    $message = 'Vous n\'êtes pas le créateur de la réservation !';
                     $typeMessage = 'avertissement';
                     $themeFooter = $themeProbleme;
                     include_once ('vues/VueAnnulerReservation.php');
             }
             else
+
             {
                 $ok = $dao->confirmerReservation($idRes);
                 if ( ! $ok ) { // 7
@@ -65,6 +67,16 @@ else
                     $themeFooter = $themeProbleme;
                     include_once ('vues/VueConfirmerReservation.php');
                 }
+
+                {
+                    if ( ! $ok1 ) { // 6
+                        // si l'enregistrement a échoué, réaffichage de la vue avec un message explicatif
+                        $message = "Problème lors de l'enregistrement !";
+                        $typeMessage = 'avertissement';
+                        $themeFooter = $themeProbleme;
+                        include_once ('vues/VueAnnulerReservation.php');
+                    }
+
                     else
                     {
                         // envoi d'un mail de confirmation de l'enregistrement
@@ -95,4 +107,6 @@ else
         } // 3
         unset($dao);                // fermeture de la connexion à MySQL
     } // 2
-    }
+
+}
+}
