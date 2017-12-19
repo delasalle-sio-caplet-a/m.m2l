@@ -40,6 +40,12 @@ else
         }
         else
         {
+            $laReservation = $dao->getReservation($idRes);
+            if ($laReservation->getEnd_time()< time()){
+                $message = "Cette réservation est déjà passée !";
+
+
+        {
             if ($dao->estLeCreateur($_SESSION['nom'], $idRes) == false) { // 4
                 // si vous etes pas l'auteur de la réservation, réaffichage de la vue de modification avec un message explicatif
                 $message = "Vous n'êtes pas le créateur de la réservation !";
@@ -56,8 +62,22 @@ else
                     $typeMessage = 'avertissement';
                     $themeFooter = $themeProbleme;
                     include_once ('vues/VueAnnulerReservation.php');
+
+            }
+            else
+
+            {
+                $ok = $dao->confirmerReservation($idRes);
+                if ( ! $ok ) { // 7
+                    // si l'enregistrement a échoué, réaffichage de la vue avec un message explicatif
+                    $message = "Problème lors de l'enregistrement !";
+                    $typeMessage = 'avertissement';
+                    $themeFooter = $themeProbleme;
+                    include_once ('vues/VueConfirmerReservation.php');
                 }
+
                 else
+
                 {
                     $ok = $dao->annulerReservation($idRes);
                     if ( ! $ok ) { // 7
@@ -67,15 +87,23 @@ else
                         $themeFooter = $themeProbleme;
                         include_once ('vues/VueAnnulerReservation.php');
                     }
+
                     else
                     {
                         // envoi d'un mail de confirmation de l'enregistrement
                         $sujet = "Annulation de votre réservation";
                         $contenuMail = "Vous venez d'annuler votre réservation sur le site M2L\n\n";
+                        $sujet = "annulation de votre reservation";
+                        $contenuMail = "Vous venez d'annuler votre reservation sur le site M2L\n\n";
                         $contenuMail .= "Votre id de reservation est : " . $idRes . "\n";
+
                         
                         $adrMail = $dao->getUtilisateur($nom)->getEmail();
                         
+
+                        $ok2 = Outils::envoyerMail($adrMail, $sujet, $contenuMail, $ADR_MAIL_EMETTEUR);
+                        if ( ! $ok ) { // 7
+
                         $ok = Outils::envoyerMail($adrMail, $sujet, $contenuMail, $ADR_MAIL_EMETTEUR);
                         if ( ! $ok ) { // 8
                             // si l'envoi de mail a échoué, réaffichage de la vue avec un message explicatif
@@ -99,4 +127,9 @@ else
         } // 3
         unset($dao);		// fermeture de la connexion à MySQL
     } // 2
-} // 1
+}
+        }
+    }
+}
+}
+
